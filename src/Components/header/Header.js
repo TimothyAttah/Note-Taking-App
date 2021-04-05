@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { BookOutlined} from '@material-ui/icons'
+import { MenuBook} from '@material-ui/icons'
 import { Buttons } from '../Buttons';
 
 const NavContainer = styled.nav`
@@ -38,7 +38,7 @@ const NavContainer = styled.nav`
 const Header = () => {
   return (
     <NavContainer>
-      <h1><Link to='/'>Note3Sixty<BookOutlined /></Link></h1>
+      <h1><Link to='/'>Note3Sixty<MenuBook /></Link></h1>
       <Buttons signUp='SignUp' signIn='SignIn' />
     </NavContainer>
   );
