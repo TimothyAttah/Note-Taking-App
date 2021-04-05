@@ -54,10 +54,10 @@ const IncomeTransactionForm = ({ incomeId, setIncomeId }) => {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <label><Add color="green" /></label>
+        <label><Add style={ { color: 'green', fontWeight: 'bold' } }/></label>
         <input type="text" placeholder="Enter your transactions" id="content" value={ content } onChange={(e) => setContent(e.target.value)} />
         <input type="number" placeholder="value" id="value" value={ values } onChange={ ( e ) => setValues( e.target.value ) } />
-        <Button type="submit" color="green">
+        <Button type="submit" variant='contained' size='medium' style={{padding: '5px 0', backgroundColor: 'green', color: '#fff'}}>
           <Check />
         </Button>
       </Form>

@@ -52,10 +52,10 @@ const ExpensesTransactionForm = ({ currentId, setCurrentId }) => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <label><Remove color="red" /></label>
+        <label><Remove style={ { color: 'red', fontWeight: 'bolder' } }/></label>
         <input type="text" placeholder="Enter your transactions" id="content" value={ content } onChange={ ( e ) => setContent( e.target.value ) } />
         <input type="number" placeholder="value" id="value" name="value" value={ values } onChange={ ( e ) => setValues( e.target.value ) } />
-        <Button type="submit" color="red">
+        <Button type="submit" color="secondary" variant='contained' size='medium' style={{padding: '5px 0'}}>
           <Check />
         </Button>
       </Form>

@@ -74,8 +74,9 @@ const IncomeTransaction = ( { incomes, setIncomeId } ) => {
             );
           } )
         ) : (
-          <div>
-            <CircularProgress />
+          <div style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+              <CircularProgress disableShrink/>
+              <p>Loading...</p>
           </div>
         ) }
       </UlWrapper>

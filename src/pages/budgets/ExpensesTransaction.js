@@ -8,9 +8,9 @@ import { CircularProgress } from '@material-ui/core';
 import { Delete, Edit } from '@material-ui/icons';
 
 const MainWrapper = styled.ul`
-width: 500px;padding: 0;
-margin: 0;
+width: 500px;
 padding: 0;
+margin: 0;
 `;
 const UlWrapper = styled.ul`
 padding: 0;
@@ -45,7 +45,7 @@ const ExpensesTransaction = ({ expenses, setCurrentId }) => {
   const dispatch = useDispatch();
   useEffect( () => {
     dispatch( listExpensesBudgets() );
-  }, [] );
+  }, [dispatch] );
   return (
     <MainWrapper>
       <h2>Expenses Transaction History</h2>
@@ -66,7 +66,7 @@ const ExpensesTransaction = ({ expenses, setCurrentId }) => {
             );
           } )
         ) : (
-          <div style={{width: '100%', border: '2px solid red', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <div style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
               <CircularProgress disableShrink/>
               <p>Loading...</p>
           </div>
