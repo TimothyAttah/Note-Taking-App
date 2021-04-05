@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { Icon, Button } from 'semantic-ui-react';
+import { Button } from '@material-ui/core';
 
 import { createIncomeBudget, editIncomeBudget } from '../../redux/actions/incomeBudgetActions';
+import { Add, Check } from '@material-ui/icons';
 
 const Form = styled.form`
   input, button {
@@ -53,11 +54,11 @@ const IncomeTransactionForm = ({ incomeId, setIncomeId }) => {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <label><Icon name="plus" color="green" /></label>
+        <label><Add color="green" /></label>
         <input type="text" placeholder="Enter your transactions" id="content" value={ content } onChange={(e) => setContent(e.target.value)} />
         <input type="number" placeholder="value" id="value" value={ values } onChange={ ( e ) => setValues( e.target.value ) } />
         <Button type="submit" color="green">
-          <Icon name="checkmark" />
+          <Check />
         </Button>
       </Form>
     </div>

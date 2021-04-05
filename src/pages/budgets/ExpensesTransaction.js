@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-import {
-  Icon, Segment, Dimmer, Loader
-} from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
@@ -70,8 +66,9 @@ const ExpensesTransaction = ({ expenses, setCurrentId }) => {
             );
           } )
         ) : (
-          <div>
-            <CircularProgress />
+          <div style={{width: '100%', border: '2px solid red', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+              <CircularProgress disableShrink/>
+              <p>Loading...</p>
           </div>
         ) }
       </UlWrapper>

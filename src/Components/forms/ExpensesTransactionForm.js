@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Icon, Button } from 'semantic-ui-react';
+import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createExpensesBudget, editExpensesBudget } from '../../redux/actions/expensesBudgetActions';
+import { Check, Remove } from '@material-ui/icons';
 
 const Form = styled.form`
 margin: 5px 0;
@@ -51,11 +52,11 @@ const ExpensesTransactionForm = ({ currentId, setCurrentId }) => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <label><Icon name="minus" color="red" /></label>
+        <label><Remove color="red" /></label>
         <input type="text" placeholder="Enter your transactions" id="content" value={ content } onChange={ ( e ) => setContent( e.target.value ) } />
         <input type="number" placeholder="value" id="value" name="value" value={ values } onChange={ ( e ) => setValues( e.target.value ) } />
         <Button type="submit" color="red">
-          <Icon name="checkmark" />
+          <Check />
         </Button>
       </Form>
     </>

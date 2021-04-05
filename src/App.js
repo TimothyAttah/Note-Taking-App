@@ -7,6 +7,7 @@ import history from './history';
 import Notes from './pages/notes/Notes';
 import Todos from './pages/todos/Todos';
 import Events from './pages/events/Events';
+import Budget from './pages/budgets/Budgets';
 
 const MainContainer = styled.main`
  *{
@@ -30,6 +31,7 @@ const App = () => {
           <Route path='/user/notes' component={ Notes } />
           <Route path='/user/todos' component={ Todos } />
           <Route path='/user/events' component={ Events } />
+          <Route path='/user/budgets' component={ Budget } />
         </Switch>
       </Router>
     </MainContainer>

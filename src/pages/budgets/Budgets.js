@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import IncomeTransactionForm from '../../components/forms/IncomeTransactionForm';
-import ExpensesTransactionForm from '../../components/forms/ExpensesTransactionForm';
+import IncomeTransactionForm from '../../Components/forms/IncomeTransactionForm';
+import ExpensesTransactionForm from '../../Components/forms/ExpensesTransactionForm';
 import IncomeTransaction from './IncomeTransaction';
 import ExpensesTransaction from './ExpensesTransaction';
 import Balance from './Balance';
+import Nav from '../../Components/nav/Nav';
 
 const TopSection = styled.section`
  display: flex;
@@ -40,6 +41,7 @@ const Budget = () => {
 
   return (
     <>
+      <Nav />
       <TopSection>
         <h2>Available budgets in May</h2>
         <Balance />

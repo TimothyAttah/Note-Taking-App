@@ -16,8 +16,8 @@ const BudgetContainer = styled.div`
   background-color: ${props => (props.primary ? 'red' : 'green')};
   position: relative;
   width: 300px;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 12px;
+  margin: 12px 0;
   span {
     color: #fff;
     position: absolute;
@@ -28,7 +28,7 @@ const BudgetContainer = styled.div`
       background-color: inherit;
       width: 350px;
       color: #fff;
-      font-size: 40px;
+      font-size: 30px;
       margin-bottom: 30px;
       letter-spacing: 2px;
   `}
