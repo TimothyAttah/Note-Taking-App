@@ -1,8 +1,8 @@
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} */
+}
 
 .wrapper {
   background-color: #e5e5e5;
@@ -12,8 +12,110 @@
 
 .app {
   width: 400px;
-  min-height: 500;
+  min-height: 500px;
   position: absolute;
+  top: 200px;
   left: 50%;
   transform: translateX(-50%);
+  border-radius: 20px;
+  box-shadow: 10px 10px 13px #0002,
+              -10px -10px 13px #fff7;
+}
+
+form {
+  margin: 20px;
+  height: 40px;
+  width: 100%;
+}
+
+form input,
+form button {
+  width: 250px;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  border-radius: 5px;
+  padding: 0 5px;
+  box-shadow: inset -5px -5px 5px #fff7,
+              inset 5px 5px 5px #0002;
+}
+
+form button {
+  width: 80px;
+  margin-left: 15px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow:  -5px -5px 5px #fff7,
+               5px 5px 5px #0002;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  color: #e5e5e5;
+  margin-bottom: 20px;
+  text-shadow:  -3px -3px 3px #fff7,
+               3px 3px 3px #0003;
+}
+
+ul li {
+  list-style: none;
+  margin: 15px 0;
+  padding: 10px;
+  text-transform: capitalize;
+   box-shadow:  -5px -5px 5px #fff7,
+               5px 5px 5px #0002;
+  animation: opacity 0.2s linear;
+}
+
+@keyframes opacity{
+  from{
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+
+ul li .row {
+  float: right;
+}
+
+ul li .row .MuiSvgIcon-root {
+  cursor: pointer;
+  margin-left: 15px;
+  color: teal;
+}
+
+ul li .row .MuiSvgIcon-root:hover {
+  color: crimson;
+}
+
+.active {
+  animation: del 0.3s linear;
+}
+
+@keyframes del {
+  to{
+    opacity: 0;
+    transform: rotate(15deg) skew(25deg) scale(0.5);
+  }
+}
+
+h2 {
+  font-size: 2em;
+  text-align: center;
+  color: teal;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+ul li input {
+  width: 70%;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: inset -2px -2px 2px #fff7,
+              inset 2px 2px 2px #0002;
 }
