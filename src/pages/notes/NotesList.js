@@ -11,8 +11,31 @@ import {
   Button,
 } from '@material-ui/core';
 import {getNotes} from '../../redux/actions/notesActions'
-import {  Favorite, Share } from '@material-ui/icons';
+import { Favorite, Share } from '@material-ui/icons';
+import styled from 'styled-components';
 import Menus from '../../Components/Menus';
+
+const CardWrapper = styled.div`
+  width: 500px;
+  border: 1px solid #ccc;
+  margin: 20px 10px;
+  @media (max-width: 540px){
+    width: 350px;
+  }
+  @media (max-width: 385px){
+    width: 250px;
+    .MuiCardActions-root {
+      display: block;
+      padding: 0;
+    }
+    button {
+      font-size: 7px;
+    }
+    .MuiTypography-displayBlock {
+      font-size: 11px;
+    }
+  }
+`
 
 const NotesList = () => {
   const dispatch = useDispatch();
@@ -27,8 +50,10 @@ const NotesList = () => {
       {notes.length ? (
         notes.map( (note, index) => {
           return (
-            <>
-              <Card key={ index } style={ { border: '2px solid #ccc', width: '350px', marginBottom: '20px' } }>
+            <CardWrapper>
+              <Card
+                key={ index }
+                >
                 <CardHeader
                   avatar={
                     <Avatar aria-label="notes">
@@ -61,7 +86,7 @@ const NotesList = () => {
                   </Button>
                 </CardActions>
               </Card>
-            </>
+            </CardWrapper>
           );
         } )
       ) : ( <h2>You have no notes yet</h2> ) }
