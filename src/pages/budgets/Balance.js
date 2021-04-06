@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 
 const IncomeExpenseBox = styled.div`
-margin: 20px 0 !important;
+margin: 20px 0;
   h3 {
     margin: 0;
   padding: 0;
@@ -17,8 +17,8 @@ const BudgetContainer = styled.div`
   background-color: ${props => (props.primary ? 'red' : 'green')};
   position: relative;
   width: 300px;
-   padding: 10px !important;
-   margin: 10px 0 !important;
+   padding: 10px;
+   margin: 10px 0;
   span {
     color: #fff;
     position: absolute;
