@@ -1,5 +1,14 @@
 import React from 'react';
-import { AttachMoneyOutlined, Event, ListAlt, Notes, Settings } from '@material-ui/icons';
+import {
+  AttachMoneyOutlined,
+  Event,
+  ListAlt,
+  Notes,
+  Settings,
+  Delete,
+  Edit,
+  Print
+} from '@material-ui/icons';
 
 export const Navs = [
   {
@@ -26,5 +35,23 @@ export const Navs = [
     name: 'Settings',
     path: '/user/settings',
     icon: <Settings />,
+  },
+]
+
+export const ModalNav = [
+  {
+    name: 'Edit',
+    icon: <Edit />,
+    path: '/user/notes/edit'
+  },
+  {
+    name: 'Delete',
+    icon: <Delete />,
+    path: '/user/notes/delete'
+  },
+  {
+    name: 'Print',
+    icon: <Print />,
+    path: '/user/notes/print'
   },
 ]
