@@ -8,6 +8,7 @@ import Notes from './pages/notes/Notes';
 import Todos from './pages/todos/Todos';
 import Events from './pages/events/Events';
 import Budget from './pages/budgets/Budgets';
+import NotesDelete from './pages/notes/NotesDelete';
 
 const MainContainer = styled.main`
  *{
@@ -26,7 +27,8 @@ const App = () => {
         <Header />
         <Switch>
           <Route path='/' exact component={ Home } />
-          <Route path='/user/notes' component={ Notes } />
+          <Route path='/user/notes' exact component={ Notes } />
+          <Route path='/user/notes/delete/:id' component={ NotesDelete } />
           <Route path='/user/todos' component={ Todos } />
           <Route path='/user/events' component={ Events } />
           <Route path='/user/budgets' component={ Budget } />

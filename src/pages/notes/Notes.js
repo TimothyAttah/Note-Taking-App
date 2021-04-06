@@ -1,11 +1,12 @@
 import React from 'react';
 import Nav from '../../Components/nav/Nav';
+import NotesList from './NotesList';
 
 const Notes = () => {
   return (
     <div>
       <Nav />
-      <h1>Notes Page</h1>
+      <NotesList />
     </div>
   );
 };

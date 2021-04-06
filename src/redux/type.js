@@ -8,5 +8,11 @@ export const LIST_EXPENSES_BUDGETS = 'LIST_EXPENSES_BUDGETS';
 export const DELETE_EXPENSES_BUDGET = 'DELETE_EXPENSES_BUDGET';
 export const EDIT_EXPENSES_BUDGET = 'EDIT_EXPENSES_BUDGET';
 
+export const CREATE_NOTE = 'CREATE_NOTE';
+export const READ_NOTE = 'READ_NOTE';
+export const UPDATE_NOTE =  'UPDATE_NOTE';
+export const DELETE_NOTE = 'DELETE_NOTE';
+export const GET_NOTES = 'GET_NOTES';
+
 export const GET_USER = 'GET_USER';
 export const SIGN_UP = 'SIGN_UP';
