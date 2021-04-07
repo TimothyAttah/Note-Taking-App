@@ -27,7 +27,6 @@ const MenuBox = styled.div`
 `
 
 const Menus = ( { note } ) => {
-  console.log(note);
    const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {

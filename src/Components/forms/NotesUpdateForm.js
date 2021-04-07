@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 import { Save } from '@material-ui/icons';
-import { useDispatch } from 'react-redux'
-import {createNote} from '../../redux/actions/notesActions'
+import { useDispatch, useSelector } from 'react-redux'
+import {updateNote} from '../../redux/actions/notesActions'
 import { v4 } from 'uuid';
 import history from '../../history';
+import { useParams } from 'react-router-dom';
 
 
 const FormContainer = styled.form`
@@ -36,18 +37,28 @@ const NotesUpdateForm = () => {
   const [ title, setTitle ] = useState( '' );
   const [ content, setContent ] = useState( '' );
   const dispatch = useDispatch();
+  const { id } = useParams()
+  
+  const notes = useSelector( state => id ? state.notesReducer.notes.find( note => note.id === id ) : null );
+
+  useEffect( () => {
+    if ( notes ) setTitle( notes.title );
+    if ( notes ) setContent( notes.content );
+    console.log(id);
+  }, [notes, id] );
 
   const handleSubmit = ( e ) => {
     e.preventDefault();
     const newNote = {
       title,
       content,
-      id: v4()
     }
-    dispatch( createNote( newNote ) );
+    console.log( newNote );
+     dispatch(updateNote(id, newNote))
     history.push( '/user/notes' );
     setTitle('')
-    setContent('')
+    setContent( '' )
+    
   }
   return (
     <div>

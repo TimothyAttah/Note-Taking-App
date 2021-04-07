@@ -4,7 +4,7 @@ import Backdrop from '../../Components/Backdrop';
 import Modal from '../../Components/modal/Modal'
 import styled from 'styled-components';
 import { Close} from '@material-ui/icons';
-import NotesCreateForm from '../../Components/forms/NotesCreateForm';
+import NotesCreateForm from '../../Components/forms/NotesUpdateForm';
 import history from '../../history';
 
 const Header = styled.header`

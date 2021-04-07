@@ -14,10 +14,10 @@ export const readNote = ( id ) => {
   }
 }
 
-export const updateNote = ( id, note ) => {
+export const updateNote = ( id, notes ) => {
   return {
     type: UPDATE_NOTE,
-    payload: [id, note]
+    payload: id, notes
   }
 }
 
