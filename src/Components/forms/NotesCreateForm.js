@@ -3,6 +3,9 @@ import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 import { Save } from '@material-ui/icons';
 import { useDispatch } from 'react-redux'
+import {createNote} from '../../redux/actions/notesActions'
+import { v4 } from 'uuid';
+import history from '../../history';
 
 
 const FormContainer = styled.form`
@@ -30,14 +33,32 @@ const FormContainer = styled.form`
 `
 
 const NotesCreateForm = () => {
+  const [ title, setTitle ] = useState( '' );
+  const [ content, setContent ] = useState( '' );
+  const dispatch = useDispatch();
+
+  const handleSubmit = ( e ) => {
+    e.preventDefault();
+    const newNote = {
+      title,
+      content,
+      id: v4()
+    }
+    dispatch( createNote( newNote ) );
+    history.push( '/user/notes' );
+    setTitle('')
+    setContent('')
+  }
   return (
     <div>
-       <FormContainer>
+       <FormContainer onSubmit={handleSubmit}>
           <label htmlFor='title'>Note Title:</label>
           <input
             id='title'
             name='title'
-            placeholder='Enter your note title'
+          placeholder='Enter your note title'
+          value={ title }
+          onChange={(e) => setTitle(e.target.value)}
           />
         <label htmlFor='content'>Note Content:</label>
           <textarea
@@ -45,12 +66,15 @@ const NotesCreateForm = () => {
             name='content'
             rows={ 20 }
             cols={ 6 }
-            placeholder='Enter your note contents here...'
+          placeholder='Enter your note contents here...'
+          value={ content }
+          onChange={(e) => setContent(e.target.value)}
           />
           <Button
             variant='contained'
             color='primary'
-            size='medium'
+          size='medium'
+          type='submit'
             startIcon={<Save />}
           >
             Create Note
