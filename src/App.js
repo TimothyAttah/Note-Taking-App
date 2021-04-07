@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Home from './pages/home/Home';
 import history from './history';
 import Notes from './pages/notes/Notes';
-import Todos from './pages/todos/Todos';
+import Todos from './pages/todos2/Todos';
 import Events from './pages/events/Events';
 import Budget from './pages/budgets/Budgets';
 import NotesDelete from './pages/notes/NotesDelete';
