@@ -10,6 +10,7 @@ import Events from './pages/events/Events';
 import Budget from './pages/budgets/Budgets';
 import NotesDelete from './pages/notes/NotesDelete';
 import NotesCreate from './pages/notes/NotesCreate';
+import NotesUpdate from './pages/notes/NotesUpdate';
 
 const MainContainer = styled.main`
  *{
@@ -30,6 +31,7 @@ const App = () => {
           <Route path='/' exact component={ Home } />
           <Route path='/user/notes' exact component={ Notes } />
           <Route path='/user/notes/delete/:id' component={ NotesDelete } />
+          <Route path='/user/notes/edit/:id' component={ NotesUpdate } />
           <Route path='/user/notes/create' component={ NotesCreate } />
           <Route path='/user/todos' component={ Todos } />
           <Route path='/user/events' component={ Events } />
