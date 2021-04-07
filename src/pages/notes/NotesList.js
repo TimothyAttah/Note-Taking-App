@@ -49,12 +49,10 @@ const NotesList = () => {
     <div>
       <h1>Note Lists</h1>
       {notes.length ? (
-        notes.map( ( note, index ) => {
+        notes.map( note => {
           return (
-            <CardWrapper>
-              <Card
-                key={ index }
-              >
+            <CardWrapper key={ note.id }>
+              <Card>
                 <CardHeader
                   avatar={
                     <Avatar aria-label="notes">
@@ -67,7 +65,6 @@ const NotesList = () => {
                     </div>
                   }
                   title={ note.title }
-                  key={ note.id }
                   subheader="September 14, 2021"
                 />
                 <CardContent>

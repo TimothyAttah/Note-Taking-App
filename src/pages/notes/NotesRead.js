@@ -1,9 +1,21 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector} from 'react-redux'
+import Nav from '../../Components/nav/Nav';
 
 const NotesRead = () => {
+  const { id } = useParams();
+  const notes = useSelector( state => id ? state.notesReducer.notes.find( note => note.id === id ) : null );
+  console.log(notes);
   return (
     <div>
-      <h1>Note Read Page</h1>
+      <Nav />
+      {notes ? (
+        <div>
+          <h1>{ notes.title }</h1>
+          <p>{ notes.content }</p>
+        </div>
+      ) : (<h2>Select a note to read</h2>)}
     </div>
   )
 }
