@@ -12,6 +12,7 @@ import NotesDelete from './pages/notes/NotesDelete';
 import NotesCreate from './pages/notes/NotesCreate';
 import NotesUpdate from './pages/notes/NotesUpdate';
 import NotesRead from './pages/notes/NotesRead';
+import TodosUpdate from './pages/todos2/TodosUpdate';
 
 const MainContainer = styled.main`
  *{
@@ -35,7 +36,8 @@ const App = () => {
           <Route path='/user/notes/edit/:id' component={ NotesUpdate } />
           <Route path='/user/notes/read/:id' component={ NotesRead } />
           <Route path='/user/notes/create' component={ NotesCreate } />
-          <Route path='/user/todos' component={ Todos } />
+          <Route path='/user/todos' exact component={ Todos } />
+          <Route path='/user/todos/edit/:id' component={ Todos } />
           <Route path='/user/events' component={ Events } />
           <Route path='/user/budgets' component={ Budget } />
         </Switch>

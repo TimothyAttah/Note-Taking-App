@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import {IconButton } from '@material-ui/core';
-import {Edit, Delete, Save, Clear} from '@material-ui/icons'
+import {Edit, Delete, Save, Clear, Cancel} from '@material-ui/icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { listTodos, deleteTodo } from '../../redux/actions/todosActions'
+import {Link, useParams} from 'react-router-dom'
 import './Todos.css';
 
 const UlWrapper = styled.ul`
@@ -55,33 +56,52 @@ const LiContainer = styled.div`
 const TodosList = () => {
   const dispatch = useDispatch();
   const todos = useSelector( state => state.todosReducer.todos )
+  const [ edit, setEdit ] = useState( false );
+  const [ todo, setTodo ] = useState( todos.todo )
+  const { id } = useParams();
+  const editTodo = useSelector( state => id ? state.todosReducer.todos.find( todo => todo.id === id ) : null );
+
+  console.log(editTodo);
   useEffect( () => {
     dispatch(listTodos())
   }, [ dispatch ] )
+
+  useEffect( () => {
+    if ( editTodo ) setTodo( editTodo.todo )
+  }, [ id, editTodo ] );
   
   const myRef = useRef()
   const handleDelete = ( id ) => {
-    
     setTimeout( () => {
       dispatch( deleteTodo( id ) )
-    }, 200 );
-    
+    }, 200 ); 
   }
-  return (
+
+  const handleOnEdit = (id) => {
+    setEdit( true )
+  }
+  if ( edit ) {
+    return (
     <div>
       <UlWrapper>
         { todos.length ? (
           todos.map( item => {
             return (
               <LiContainer key={ item.id }>
-              <li ref={myRef}>
-                { item.todo }
+              <li >
+                <input
+             type='text'
+             value={ todo }
+             name='todo'
+             id='todo'
+             onChange={(e)=> setTodo(e.target.value)}
+           />
                 <div>
                   <IconButton>
-                    <Edit titleAccess='Edit' />
+                    <Save titleAccess='Save' />
                   </IconButton>
                   <IconButton onClick={()=> handleDelete(item.id)}>
-                    <Delete titleAccess='Delete' />
+                    <Cancel titleAccess='Delete' />
                   </IconButton>
                 </div>
                 </li>
@@ -92,6 +112,36 @@ const TodosList = () => {
       </UlWrapper>
     </div>
   );
+  } else {
+    return (
+    <div>
+      <UlWrapper>
+        { todos.length ? (
+          todos.map( item => {
+            return (
+              <LiContainer key={ item.id }>
+                <li ref={ myRef }>
+                  { item.todo }
+                  <div>
+                    {/* <Link to={`/user/todos/edit/${item.id}`}> */}
+                    <IconButton onClick={()=> handleOnEdit()}>
+                      <Edit titleAccess='Edit' />
+                      </IconButton>
+                      {/* </Link> */}
+                    <IconButton onClick={ () => handleDelete( item.id ) }>
+                      <Delete titleAccess='Delete' />
+                    </IconButton>
+                  </div>
+                </li>
+              </LiContainer>
+            );
+          } )
+        ) : ( <h2>You have nothing to do</h2> ) }
+      </UlWrapper>
+    </div>
+  );
+  }
+  
 }
 
 export default TodosList;
