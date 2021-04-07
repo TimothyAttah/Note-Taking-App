@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import {IconButton } from '@material-ui/core';
+import {Edit, Delete, Save, Clear} from '@material-ui/icons'
 import { useDispatch, useSelector } from 'react-redux';
-import { listTodos } from '../../redux/actions/todosActions'
+import { listTodos, deleteTodo } from '../../redux/actions/todosActions'
+import './Todos.css';
 
 const UlWrapper = styled.ul`
 margin: 0;
@@ -21,6 +24,32 @@ padding: 0;
   }
 }
   }
+   
+   h2 {
+      font-size: 2em;
+  text-align: center;
+  color: teal;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+   }
+`;
+
+const LiContainer = styled.div`
+  li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  button {
+    padding: 0;
+    margin-left: 10px;
+    cursor: pointer;
+    color: teal;
+    :hover {
+      color: crimson;
+    }
+  }
+  }
 `;
 
 const TodosList = () => {
@@ -28,14 +57,35 @@ const TodosList = () => {
   const todos = useSelector( state => state.todosReducer.todos )
   useEffect( () => {
     dispatch(listTodos())
-  },[dispatch])
+  }, [ dispatch ] )
+  
+  const myRef = useRef()
+  const handleDelete = ( id ) => {
+    
+    setTimeout( () => {
+      dispatch( deleteTodo( id ) )
+    }, 200 );
+    
+  }
   return (
     <div>
       <UlWrapper>
         { todos.length ? (
           todos.map( item => {
             return (
-              <li key={ item.id }>{ item.todo }</li>
+              <LiContainer key={ item.id }>
+              <li ref={myRef}>
+                { item.todo }
+                <div>
+                  <IconButton>
+                    <Edit titleAccess='Edit' />
+                  </IconButton>
+                  <IconButton onClick={()=> handleDelete(item.id)}>
+                    <Delete titleAccess='Delete' />
+                  </IconButton>
+                </div>
+                </li>
+                </LiContainer>
             )
           } )
         ) : ( <h2>You have nothing to do</h2> ) }
