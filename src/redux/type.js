@@ -14,5 +14,10 @@ export const UPDATE_NOTE =  'UPDATE_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
 export const GET_NOTES = 'GET_NOTES';
 
+export const CREATE_TODO = 'CREATE_TODO';
+export const UPDATE_TODO =  'UPDATE_TODO';
+export const DELETE_TODO = 'DELETE_TODO';
+export const LIST_TODOS = 'LIST_TODOS';
+
 export const GET_USER = 'GET_USER';
 export const SIGN_UP = 'SIGN_UP';

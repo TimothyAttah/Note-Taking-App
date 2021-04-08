@@ -1,0 +1,11 @@
+
+.active {
+  animation: del 0.3s linear;
+}
+
+@keyframes del {
+  to{
+    opacity: 0;
+    transform: rotate(15deg) skew(25deg) scale(0.5);
+  }
+}
