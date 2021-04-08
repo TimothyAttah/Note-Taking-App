@@ -13,6 +13,7 @@ import NotesCreate from './pages/notes/NotesCreate';
 import NotesUpdate from './pages/notes/NotesUpdate';
 import NotesRead from './pages/notes/NotesRead';
 import Signup from './pages/user/Signup';
+import Signin from './pages/user/Signin';
 
 
 const MainContainer = styled.main`
@@ -37,6 +38,7 @@ const App = () => {
         <Switch>
           <Route path='/' exact component={ Home } />
           <Route path='/user/signup' exact component={ Signup } />
+          <Route path='/user/signin' exact component={ Signin } />
           <Route path='/user/notes' exact component={ Notes } />
           <Route path='/user/notes/delete/:id' component={ NotesDelete } />
           <Route path='/user/notes/edit/:id' component={ NotesUpdate } />
