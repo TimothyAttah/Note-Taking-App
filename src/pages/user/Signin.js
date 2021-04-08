@@ -4,7 +4,7 @@ import { Close } from '@material-ui/icons';
 import Backdrop from '../../Components/Backdrop';
 import Modal from '../../Components/modal/Modal';
 import Nav from '../../Components/nav/Nav';
-import SignupForm from '../../Components/forms/SignupForm';
+import SigninForm from '../../Components/forms/SigninForm';
 import { Link } from 'react-router-dom';
 import { images } from '../../Components/Images';
 import {
@@ -12,12 +12,13 @@ import {
   Title,
   Subtitle,
   Description,
-  ButtonWrapper
+  ButtonWrapper,
+  Divider
 } from './SigninSignupStyles';
 import history from '../../history';
 
 
-const Signup = () => {
+const Signin = () => {
   return (
     <>
       <Nav />
@@ -25,8 +26,8 @@ const Signup = () => {
       <Modal>
         <CloseButton><IconButton  onClick={()=> history.push('/')}><Close /></IconButton></CloseButton>
         <Title>Note3Sixty</Title>
-        <Subtitle>Create your account</Subtitle>
-        <Description>Enter your personal details to start your journey today</Description>
+        <Subtitle>Hello Welcome Back</Subtitle>
+        <Description>Enter your personal details to sign in</Description>
         <ButtonWrapper>
           <Link to='/user/api/google'>
             <Button variant='contained' color='inherit'>
@@ -35,16 +36,16 @@ const Signup = () => {
             </Button>
           </Link>
         </ButtonWrapper>
-        <div>
+        <Divider>
           <img src={ images.lineIcon } alt='' />
           <span>or</span>
           <img src={ images.lineIcon } alt='' />
-        </div>
-        <SignupForm />
-        <Description primary>Already have an account? <Link to='/user/signin'>Signin here</Link></Description>
+        </Divider>
+        <SigninForm />
+        <Description primary>Don't have an account? <Link to='/user/signup'>Signup here</Link></Description>
       </Modal>
     </>
   );
 };
 
-export default Signup;
+export default Signin;
