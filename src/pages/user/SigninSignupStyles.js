@@ -47,6 +47,18 @@ export const Description = styled.small`
   }
 `;
 
+export const Divider = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #B6B8C9;
+    margin: 0 10px;
+  }
+`
+
 export const ButtonWrapper = styled.div`
   a {
   position: relative;
