@@ -45,9 +45,7 @@ const notesReducer = (state = initialState, action) => {
     case UPDATE_NOTE:
       return {
         ...state,
-        notes: state.notes.forEach( ( note, id ) => {
-          
-        })
+        notes: state.notes.map( note => note.id === action.payload.id ? action.payload : state.notes )  
       }
     case DELETE_NOTE:
       return {

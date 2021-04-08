@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -48,12 +49,10 @@ const NotesList = () => {
     <div>
       <h1>Note Lists</h1>
       {notes.length ? (
-        notes.map( (note, index) => {
+        notes.map( note => {
           return (
-            <CardWrapper>
-              <Card
-                key={ index }
-                >
+            <CardWrapper key={ note.id }>
+              <Card>
                 <CardHeader
                   avatar={
                     <Avatar aria-label="notes">
@@ -62,11 +61,10 @@ const NotesList = () => {
                   }
                   action={
                     <div>
-                      <Menus note={note} />
+                      <Menus note={ note } />
                     </div>
                   }
                   title={ note.title }
-                  key={ note.id }
                   subheader="September 14, 2021"
                 />
                 <CardContent>
@@ -81,9 +79,11 @@ const NotesList = () => {
                   <IconButton aria-label="share">
                     <Share />
                   </IconButton>
-                  <Button variant='contained' size='small' color='primary'>
-                    Read More...
-                  </Button>
+                  <Link to={`/user/notes/read/${note.id}`}>
+                    <Button variant='contained' size='small' color='primary'>
+                      Read More...
+                    </Button>
+                  </Link>
                 </CardActions>
               </Card>
             </CardWrapper>
