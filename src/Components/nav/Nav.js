@@ -44,9 +44,7 @@ const Nav = () => {
             </Ul>
           </NavWrapper>
           <BoxWrapper>
-            <NavLink to='/user/notes/create'>
-              <Buttons signUp={ <AddOutlined /> } signIn='Create Notes' />
-              </NavLink>
+            <Buttons signUp={ <AddOutlined /> } signIn='Create Notes' signinPath='/user/notes/create' signupPath='/user/notes/create' />
           </BoxWrapper>
         </Toolbar>
       </AppBar>
