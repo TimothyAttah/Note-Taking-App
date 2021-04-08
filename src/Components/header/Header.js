@@ -39,7 +39,7 @@ const Header = () => {
   return (
     <NavContainer>
       <h1><Link to='/'>Note3Sixty<MenuBook /></Link></h1>
-      <Buttons signUp='SignUp' signIn='SignIn' />
+      <Buttons signUp='SignUp' signIn='SignIn' signupPath='/user/signup' signinPath='/user/signin'/>
     </NavContainer>
   );
 };

@@ -12,11 +12,16 @@ import NotesDelete from './pages/notes/NotesDelete';
 import NotesCreate from './pages/notes/NotesCreate';
 import NotesUpdate from './pages/notes/NotesUpdate';
 import NotesRead from './pages/notes/NotesRead';
-import TodosUpdate from './pages/todos2/TodosUpdate';
+import Signup from './pages/user/Signup';
+
 
 const MainContainer = styled.main`
  *{
    box-sizing: border-box;
+   a {
+     text-decoration: none;
+     color: #fff;
+   }
  }
  width: 100%;
  max-width: 1500px;
@@ -31,6 +36,7 @@ const App = () => {
         <Header />
         <Switch>
           <Route path='/' exact component={ Home } />
+          <Route path='/user/signup' exact component={ Signup } />
           <Route path='/user/notes' exact component={ Notes } />
           <Route path='/user/notes/delete/:id' component={ NotesDelete } />
           <Route path='/user/notes/edit/:id' component={ NotesUpdate } />
