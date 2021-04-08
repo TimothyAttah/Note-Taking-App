@@ -14,15 +14,16 @@ import {
   Description,
   ButtonWrapper
 } from './SigninSignupStyles';
+import history from '../../history';
 
 
 const Signup = () => {
   return (
     <>
       <Nav />
-      <Backdrop />
+      <Backdrop onClick={()=> history.push('/')} />
       <Modal>
-        <CloseButton><IconButton><Close /></IconButton></CloseButton>
+        <CloseButton><IconButton  onClick={()=> history.push('/')}><Close /></IconButton></CloseButton>
         <Title>Note3Sixty</Title>
         <Subtitle>Create your account</Subtitle>
         <Description>Enter your personal details to start your journey today</Description>

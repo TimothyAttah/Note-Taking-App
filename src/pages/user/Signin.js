@@ -4,7 +4,7 @@ import { Close } from '@material-ui/icons';
 import Backdrop from '../../Components/Backdrop';
 import Modal from '../../Components/modal/Modal';
 import Nav from '../../Components/nav/Nav';
-import SignupForm from '../../Components/forms/SignupForm';
+import SigninForm from '../../Components/forms/SigninForm';
 import { Link } from 'react-router-dom';
 import { images } from '../../Components/Images';
 import {
@@ -14,15 +14,16 @@ import {
   Description,
   ButtonWrapper
 } from './SigninSignupStyles';
+import history from '../../history';
 
 
 const Signin = () => {
   return (
     <>
       <Nav />
-      <Backdrop />
+      <Backdrop onClick={()=> history.push('/')} />
       <Modal>
-        <CloseButton><IconButton><Close /></IconButton></CloseButton>
+        <CloseButton><IconButton  onClick={()=> history.push('/')}><Close /></IconButton></CloseButton>
         <Title>Note3Sixty</Title>
         <Subtitle>Hello Welcome Back</Subtitle>
         <Description>Enter your personal details to sign in</Description>
@@ -39,7 +40,7 @@ const Signin = () => {
           <span>or</span>
           <img src={ images.lineIcon } alt='' />
         </div>
-        <SignupForm />
+        <SigninForm />
         <Description primary>Don't have an account? <Link to='/user/signup'>Signup here</Link></Description>
       </Modal>
     </>

@@ -35,22 +35,10 @@ const FormContainer = styled.form`
 }
 `;
 
-const Signup = () => {
+const Signin = () => {
   return (
     <>
       <FormContainer>
-        <label htmlFor='firstName'>First Name:</label>
-        <input
-          type='text'
-          name='firstName'
-          placeholder='Enter your first name'
-        />
-        <label htmlFor='lastName'>Last Name:</label>
-        <input
-          type='text'
-          name='lastName'
-          placeholder='Enter your last name'
-        />
         <label htmlFor='email'>Email Address:</label>
         <input
           type='email'
@@ -69,4 +57,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signin;
