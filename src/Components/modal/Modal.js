@@ -6,7 +6,7 @@ const ModalContainer = styled.div`
  width: 700px;
  margin: 0 auto;
  background-color: #fff;
- padding: 10px;
+ padding: 10px 20px;
  border-radius: 10px;
  display: flex;
  flex-direction: column;
