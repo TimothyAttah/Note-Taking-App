@@ -12,7 +12,8 @@ import {
   Title,
   Subtitle,
   Description,
-  ButtonWrapper
+  ButtonWrapper,
+  Divider
 } from './SigninSignupStyles';
 import history from '../../history';
 
@@ -35,11 +36,11 @@ const Signup = () => {
             </Button>
           </Link>
         </ButtonWrapper>
-        <div>
+        <Divider>
           <img src={ images.lineIcon } alt='' />
           <span>or</span>
           <img src={ images.lineIcon } alt='' />
-        </div>
+        </Divider>
         <SignupForm />
         <Description primary>Already have an account? <Link to='/user/signin'>Signin here</Link></Description>
       </Modal>
