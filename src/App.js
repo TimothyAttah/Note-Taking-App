@@ -28,6 +28,7 @@ const MainContainer = styled.main`
  max-width: 1500px;
  border: 2px solid red;
  margin: 0 auto;
+ font-family: 'Roboto', sans-serif;
 `
 
 const App = () => {
