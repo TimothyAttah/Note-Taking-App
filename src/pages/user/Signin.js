@@ -3,7 +3,6 @@ import { Button, IconButton } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import Backdrop from '../../Components/Backdrop';
 import Modal from '../../Components/modal/Modal';
-import Nav from '../../Components/nav/Nav';
 import SigninForm from '../../Components/forms/SigninForm';
 import { Link } from 'react-router-dom';
 import { images } from '../../Components/Images';
@@ -21,7 +20,6 @@ import history from '../../history';
 const Signin = () => {
   return (
     <>
-      <Nav />
       <Backdrop onClick={()=> history.push('/')} />
       <Modal>
         <CloseButton><IconButton  onClick={()=> history.push('/')}><Close /></IconButton></CloseButton>

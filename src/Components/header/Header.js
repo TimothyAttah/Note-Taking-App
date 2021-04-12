@@ -8,6 +8,8 @@ const NavContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  top: 0;
   h1 {
     font-family: cursive;
     a {

@@ -20,7 +20,7 @@ const Nav = () => {
   }
   return (
     <div style={ { marginTop: '50px', marginBottom: '30px' } }>
-      <AppBar position='static' style={ { height: '58px', width: '100%', position: 'relative' } }>
+      <AppBar position='sticky'  style={ { height: '58px', width: '100%', position: 'sticky', top: '0'} }>
         <Toolbar>
           <IconButton
             color='inherit'
