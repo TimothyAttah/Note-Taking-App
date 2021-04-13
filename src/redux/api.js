@@ -24,7 +24,7 @@ export const deleteExpenses = ( id ) => axios.delete( `${ expenseUrl }/delete/${
 
 export const getAllUser = () => axios.get( authUrl );
 
-export const signUpUser = ( users ) => axios.post( `${ authUrl }/signup`, users );
+export const signUpUser = ( userData ) => axios.post( `${ authUrl }/signup`, userData );
 
 
 export const allNotes = () => axios.get( notesUrl );

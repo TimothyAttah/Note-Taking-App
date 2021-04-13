@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
+import { userSignup } from '../../redux/actions/authActions'
+import {useDispatch} from 'react-redux'
+import history from '../../history';
 
 const FormContainer = styled.form`
   margin: 20px 0;
@@ -36,34 +39,60 @@ const FormContainer = styled.form`
 `;
 
 const Signup = () => {
+  const dispatch = useDispatch();
+
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = ( e ) => {
+    e.preventDefault();
+    const newUser = {
+      firstName,
+      lastName,
+      email,
+      password
+    }
+    dispatch( userSignup( newUser ) )
+    history.push( '/user/signin' );
+  }
   return (
     <>
-      <FormContainer>
+      <FormContainer onSubmit={handleSubmit}>
         <label htmlFor='firstName'>First Name:</label>
         <input
           type='text'
           name='firstName'
+          value={ firstName }
+          onChange={(e) => setFirstName(e.target.value)}
           placeholder='Enter your first name'
         />
         <label htmlFor='lastName'>Last Name:</label>
         <input
           type='text'
           name='lastName'
+          value={ lastName }
+          onChange={(e) => setLastName(e.target.value)}
           placeholder='Enter your last name'
         />
         <label htmlFor='email'>Email Address:</label>
         <input
           type='email'
           name='email'
+          value={ email }
+          onChange={(e) => setEmail(e.target.value)}
           placeholder='example@example.com'
         />
         <label htmlFor='password'>Password:</label>
         <input
           type='password'
           name='password'
+          value={ password }
+          onChange={(e) => setPassword(e.target.value)}
           placeholder='Enter your password'
         />
-        <Button variant='contained'>Sign Up</Button>
+        <Button type='submit' variant='contained'>Sign Up</Button>
       </FormContainer>
     </>
   );
