@@ -28,3 +28,5 @@ export const signUpUser = ( users ) => axios.post( `${ authUrl }/sign-up`, users
 
 
 export const allNotes = () => axios.get( notesUrl );
+
+export const createNote = (notesData) => axios.post(`${notesUrl}/create`, notesData)
