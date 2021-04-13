@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const incomeUrl = 'http://localhost:8080/api/budgets/incomes';
 const expenseUrl = 'http://localhost:8080/api/budgets/expenses';
-const authUrl = 'http://localhost:8080/api/user';
+const authUrl = 'http://localhost:5000/api/user';
 
 const notesUrl = 'http://localhost:5000/api/notes';
 
@@ -24,7 +24,7 @@ export const deleteExpenses = ( id ) => axios.delete( `${ expenseUrl }/delete/${
 
 export const getAllUser = () => axios.get( authUrl );
 
-export const signUpUser = ( users ) => axios.post( `${ authUrl }/sign-up`, users );
+export const signUpUser = ( users ) => axios.post( `${ authUrl }/signup`, users );
 
 
 export const allNotes = () => axios.get( notesUrl );
