@@ -85,6 +85,11 @@ const NotesList = () => {
                     </Button>
                   </Link>
                 </CardActions>
+                <CardContent>
+                  <form>
+                    <input placeholder='Add a comment' />
+                  </form>
+                </CardContent>
               </Card>
             </CardWrapper>
           );
