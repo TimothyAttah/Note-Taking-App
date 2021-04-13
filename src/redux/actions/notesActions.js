@@ -1,10 +1,16 @@
 import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES } from '../type';
 import * as api from '../api';
 
-export const createNote = ( note ) => {
-  return {
-    type: CREATE_NOTE,
-    payload: note
+
+export const createNote = ( notesData ) => async dispatch => {
+  try {
+    const { data } = await api.createNote( notesData );
+    dispatch( {
+      type: CREATE_NOTE,
+      payload: data
+    })
+  } catch (error) {
+    console.log(error);
   }
 }
 
