@@ -51,7 +51,7 @@ const NotesList = () => {
       {notes.length ? (
         notes.map( note => {
           return (
-            <CardWrapper key={ note.id }>
+            <CardWrapper key={ note._id }>
               <Card>
                 <CardHeader
                   avatar={
@@ -79,7 +79,7 @@ const NotesList = () => {
                   <IconButton aria-label="share">
                     <Share />
                   </IconButton>
-                  <Link to={`/user/notes/read/${note.id}`}>
+                  <Link to={`/user/notes/read/${note._id}`}>
                     <Button variant='contained' size='small' color='primary'>
                       Read More...
                     </Button>
