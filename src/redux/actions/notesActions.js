@@ -1,4 +1,5 @@
 import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES } from '../type';
+import * as api from '../api';
 
 export const createNote = ( note ) => {
   return {
@@ -28,9 +29,15 @@ export const deleteNote = ( id ) => {
   }
 }
 
-export const getNotes = ( id ) => {
-  return {
-    type: GET_NOTES,
-    payload: id
+
+export const getNotes = () => async dispatch => {
+  try {
+    const { data } = await api.allNotes();
+    dispatch( {
+      type: GET_NOTES,
+      payload: data
+    })
+  } catch (error) {
+    console.log(error);
   }
 }

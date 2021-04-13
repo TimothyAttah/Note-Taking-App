@@ -4,6 +4,8 @@ const incomeUrl = 'http://localhost:8080/api/budgets/incomes';
 const expenseUrl = 'http://localhost:8080/api/budgets/expenses';
 const authUrl = 'http://localhost:8080/api/user';
 
+const notesUrl = 'http://localhost:5000/api/notes';
+
 export const getIncome = () => axios.get( `${ incomeUrl }` );
 
 export const createIncome = ( newIncome ) => axios.post( `${ incomeUrl }/create/income`, newIncome );
@@ -23,3 +25,8 @@ export const deleteExpenses = ( id ) => axios.delete( `${ expenseUrl }/delete/${
 export const getAllUser = () => axios.get( authUrl );
 
 export const signUpUser = ( users ) => axios.post( `${ authUrl }/sign-up`, users );
+
+
+export const allNotes = () => axios.get( notesUrl );
+
+export const createNote = (notesData) => axios.post(`${notesUrl}/create`, notesData)
