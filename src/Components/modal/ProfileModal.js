@@ -50,6 +50,7 @@ const ProfileModal = () => {
               >
                 <MenuItem onClick={handleClose}><Link to='/user/profile'>Profile</Link></MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Log Out</MenuItem>
               </Menu>
             </div>
           )}
