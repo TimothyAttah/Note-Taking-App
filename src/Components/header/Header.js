@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { MenuBook} from '@material-ui/icons'
 import { Buttons } from '../Buttons';
+import ProfileModal from '../modal/ProfileModal';
 
 const NavContainer = styled.nav`
   display: flex;
@@ -41,7 +42,10 @@ const Header = () => {
   return (
     <NavContainer>
       <h1><Link to='/'>Note3Sixty<MenuBook /></Link></h1>
-      <Buttons signUp='SignUp' signIn='SignIn' signupPath='/user/signup' signinPath='/user/signin'/>
+      <div style={{display: 'flex', alignItems: 'center'}}>
+        <Buttons signUp='SignUp' signIn='SignIn' signupPath='/user/signup' signinPath='/user/signin' />
+        <ProfileModal />
+      </div>
     </NavContainer>
   );
 };
