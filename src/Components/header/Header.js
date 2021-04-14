@@ -38,13 +38,21 @@ const NavContainer = styled.nav`
   }
 `;
 
+
+
 const Header = () => {
+  const user = JSON.parse(localStorage.getItem('user'))
   return (
     <NavContainer>
       <h1><Link to='/'>Note3Sixty<MenuBook /></Link></h1>
-      <div style={{display: 'flex', alignItems: 'center'}}>
+      <div style={ { display: 'flex', alignItems: 'center' } }>
+        { user ? (
+           <ProfileModal />
+        ): (
         <Buttons signUp='SignUp' signIn='SignIn' signupPath='/user/signup' signinPath='/user/signin' />
-        <ProfileModal />
+          
+        )}
+       
       </div>
     </NavContainer>
   );
