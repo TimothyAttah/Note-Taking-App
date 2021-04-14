@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { userSignin } from '../../redux/actions/authActions'
 
 const FormContainer = styled.form`
   margin: 20px 0;
@@ -36,22 +38,41 @@ const FormContainer = styled.form`
 `;
 
 const Signin = () => {
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  
+  
+
+  const handleSubmit = ( e ) => {
+    e.preventDefault();
+    const savedUser = {
+      email,
+      password
+    }
+    dispatch( userSignin( savedUser ) );
+  }
   return (
     <>
-      <FormContainer>
+      <FormContainer onSubmit={handleSubmit}>
         <label htmlFor='email'>Email Address:</label>
         <input
           type='email'
           name='email'
           placeholder='example@example.com'
+          value={ email }
+          onChange={(e) => setEmail(e.target.value)}
         />
         <label htmlFor='password'>Password:</label>
         <input
           type='password'
           name='password'
           placeholder='Enter your password'
+          value={ password }
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <Button variant='contained'>Sign Up</Button>
+        <Button type='submit' variant='contained'>Sign In</Button>
       </FormContainer>
     </>
   );
