@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { MenuBook} from '@material-ui/icons'
 import { Buttons } from '../Buttons';
 import ProfileModal from '../modal/ProfileModal';
+import { user } from '../../App';
 
 const NavContainer = styled.nav`
   display: flex;
@@ -41,18 +42,15 @@ const NavContainer = styled.nav`
 
 
 const Header = () => {
-  const user = JSON.parse(localStorage.getItem('user'))
   return (
     <NavContainer>
       <h1><Link to='/'>Note3Sixty<MenuBook /></Link></h1>
       <div style={ { display: 'flex', alignItems: 'center' } }>
         { user ? (
-           <ProfileModal />
-        ): (
-        <Buttons signUp='SignUp' signIn='SignIn' signupPath='/user/signup' signinPath='/user/signin' />
-          
-        )}
-       
+          <ProfileModal />
+        ) : (
+          <Buttons signUp='SignUp' signIn='SignIn' signupPath='/user/signup' signinPath='/user/signin' />
+        ) }
       </div>
     </NavContainer>
   );

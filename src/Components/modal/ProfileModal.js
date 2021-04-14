@@ -4,58 +4,55 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const ProfileModal = () => {
-  const [auth, setAuth] = useState(true);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+  const [ auth, setAuth ] = useState( true );
+  const [ anchorEl, setAnchorEl ] = useState( null );
+  const open = Boolean( anchorEl );
 
-  // const handleChange = (event) => {
-  //   setAuth(event.target.checked);
-  // };
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleMenu = ( event ) => {
+    setAnchorEl( event.currentTarget );
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl( null );
   };
   return (
     <div>
-       {auth && (
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
+      {auth && (
+        <div>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={ handleMenu }
+            color="inherit"
+            style={ { padding: '0' } }
           >
-             <h4>Patrick Stuart </h4>
-              <Avatar> <AccountCircle /></Avatar>
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}><Link to='/user/profile'>Profile</Link></MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Log Out</MenuItem>
-              </Menu>
-            </div>
-          )}
+            <h4 style={ { paddingRight: '15px', fontSize: '16px' } }>Patrick Stuart </h4>
+            <Avatar> <AccountCircle /></Avatar>
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={ anchorEl }
+            anchorOrigin={ {
+              vertical: 'top',
+              horizontal: 'right',
+            } }
+            keepMounted
+            transformOrigin={ {
+              vertical: 'top',
+              horizontal: 'right',
+            } }
+            open={ open }
+            onClose={ handleClose }
+          >
+            <MenuItem onClick={ handleClose }><Link to='/user/profile'>Profile</Link></MenuItem>
+            <MenuItem onClick={ handleClose }>My account</MenuItem>
+            <MenuItem onClick={ handleClose }>Log Out</MenuItem>
+          </Menu>
+        </div>
+      ) }
     </div>
-  )
-}
+  );
+};
 
-export default ProfileModal
+export default ProfileModal;

@@ -3,7 +3,7 @@ import {  AddOutlined, Menu } from '@material-ui/icons';
 import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { Buttons } from '../Buttons';
-import { Navs } from '../helper/Helper'
+import { Navs } from '../helper/Helper';
 import {
   NavWrapper,
   cName,
@@ -19,8 +19,8 @@ const Nav = () => {
     setOpen( true );
   }
   return (
-    <div style={ { marginTop: '50px', marginBottom: '30px' } }>
-      <AppBar position='sticky'  style={ { height: '58px', width: '100%', position: 'sticky', top: '0'} }>
+    <div style={ { marginTop: '30px', marginBottom: '30px', position: 'sticky' } }>
+      <AppBar position='sticky' style={ { height: '58px', width: '100%', top: '0' } }>
         <Toolbar>
           <IconButton
             color='inherit'

@@ -6,7 +6,7 @@ export const NavWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 80px;
+  padding-left: 80px;
   @media (max-width: 870px){
     display: none;
   }

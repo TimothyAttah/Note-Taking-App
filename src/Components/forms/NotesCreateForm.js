@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 import { Save } from '@material-ui/icons';
-import { useDispatch } from 'react-redux'
-import {createNote} from '../../redux/actions/notesActions'
+import { useDispatch } from 'react-redux';
+import { createNote } from '../../redux/actions/notesActions';
 
 const FormContainer = styled.form`
   box-sizing: border-box;
@@ -41,42 +41,42 @@ const NotesCreateForm = () => {
       content
     }
     dispatch( createNote( newNote ) );
-    setTitle('')
-    setContent('')
+    setTitle( '' )
+    setContent( '' )
   }
   return (
     <div>
-       <FormContainer onSubmit={handleSubmit}>
-          <label htmlFor='title'>Note Title:</label>
-          <input
-            id='title'
-            name='title'
+      <FormContainer onSubmit={ handleSubmit }>
+        <label htmlFor='title'>Note Title:</label>
+        <input
+          id='title'
+          name='title'
           placeholder='Enter your note title'
           value={ title }
-          onChange={(e) => setTitle(e.target.value)}
-          />
+          onChange={ ( e ) => setTitle( e.target.value ) }
+        />
         <label htmlFor='content'>Note Content:</label>
-          <textarea
-            id='content'
-            name='content'
-            rows={ 20 }
-            cols={ 6 }
+        <textarea
+          id='content'
+          name='content'
+          rows={ 20 }
+          cols={ 6 }
           placeholder='Enter your note contents here...'
           value={ content }
-          onChange={(e) => setContent(e.target.value)}
-          />
-          <Button
-            variant='contained'
-            color='primary'
+          onChange={ ( e ) => setContent( e.target.value ) }
+        />
+        <Button
+          variant='contained'
+          color='primary'
           size='medium'
           type='submit'
-            startIcon={<Save />}
-          >
-            Create Note
+          startIcon={ <Save /> }
+        >
+          Create Note
           </Button>
-        </FormContainer>
+      </FormContainer>
     </div>
-  )
-}
+  );
+};
 
-export default NotesCreateForm
+export default NotesCreateForm;

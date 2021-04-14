@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
-import { userSignup } from '../../redux/actions/authActions'
-import {useDispatch} from 'react-redux'
-import history from '../../history';
+import { userSignup } from '../../redux/actions/authActions';
+import { useDispatch } from 'react-redux';
 
 const FormContainer = styled.form`
   margin: 20px 0;
@@ -58,13 +57,13 @@ const Signup = () => {
   }
   return (
     <>
-      <FormContainer onSubmit={handleSubmit}>
+      <FormContainer onSubmit={ handleSubmit }>
         <label htmlFor='firstName'>First Name:</label>
         <input
           type='text'
           name='firstName'
           value={ firstName }
-          onChange={(e) => setFirstName(e.target.value)}
+          onChange={ ( e ) => setFirstName( e.target.value ) }
           placeholder='Enter your first name'
         />
         <label htmlFor='lastName'>Last Name:</label>
@@ -72,7 +71,7 @@ const Signup = () => {
           type='text'
           name='lastName'
           value={ lastName }
-          onChange={(e) => setLastName(e.target.value)}
+          onChange={ ( e ) => setLastName( e.target.value ) }
           placeholder='Enter your last name'
         />
         <label htmlFor='email'>Email Address:</label>
@@ -80,7 +79,7 @@ const Signup = () => {
           type='email'
           name='email'
           value={ email }
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={ ( e ) => setEmail( e.target.value ) }
           placeholder='example@example.com'
         />
         <label htmlFor='password'>Password:</label>
@@ -88,7 +87,7 @@ const Signup = () => {
           type='password'
           name='password'
           value={ password }
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={ ( e ) => setPassword( e.target.value ) }
           placeholder='Enter your password'
         />
         <Button type='submit' variant='contained'>Sign Up</Button>

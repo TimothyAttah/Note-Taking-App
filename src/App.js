@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import Header from './Components/header/Header';
 import styled from 'styled-components';
 import Home from './pages/home/Home';
@@ -50,26 +50,6 @@ const App = () => {
     <MainContainer>
       <Router history={ history }>
         <Header />
-        {/* { user ? (
-          <Switch>
-          <Route path='/' exact component={ Home } />
-          <Route path='/user/notes' exact component={ Notes } />
-          <Route path='/user/notes/delete/:id' component={ NotesDelete } />
-          <Route path='/user/notes/edit/:id' component={ NotesUpdate } />
-          <Route path='/user/notes/read/:id' component={ NotesRead } />
-          <Route path='/user/notes/create' component={ NotesCreate } />
-          <Route path='/user/todos' exact component={ Todos } />
-          <Route path='/user/todos/edit/:id' component={ Todos } />
-          <Route path='/user/events' component={ Events } />
-            <Route path='/user/budgets' component={ Budget } />
-          </Switch>
-        ): (
-          <Switch>
-           <Route path='/user/signup' exact component={ Signup } />
-              <Route path='/user/signin' exact component={ Signin } />
-              <Redirect path='/user/signin' />
-          </Switch>
-        )} */}
         <Switch>
           <Route path='/' exact component={ Home } />
           <Route path='/user/signup' exact component={ Signup } />
@@ -79,12 +59,12 @@ const App = () => {
           <Route path='/user/notes/edit/:id' component={ NotesUpdate } />
           <Route path='/user/notes/read/:id' component={ NotesRead } />
           <Route path='/user/notes/create' component={ NotesCreate } />
-          <Route path='/user/profile' exact component={Profile } />
+          <Route path='/user/profile' exact component={ Profile } />
           <Route path='/user/todos' exact component={ Todos } />
           <Route path='/user/todos/edit/:id' component={ Todos } />
           <Route path='/user/events' component={ Events } />
           <Route path='/user/budgets' component={ Budget } />
-          {!user ? history.push('/user/signin') : null}
+          { !user ? history.push( '/user/signin' ) : null }
         </Switch>
       </Router>
     </MainContainer>
