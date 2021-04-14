@@ -1,5 +1,4 @@
 import { SIGN_UP, SIGN_IN, GET_USER } from '../type';
-import * as api from '../api';
 import history from '../../history';
 
 export const userSignup = ({firstName, lastName, email, password}) => dispatch => {
@@ -44,7 +43,6 @@ export const userSignin = ({email, password}) => dispatch => {
       if ( data.error ) {
         console.log( data.error );
       } else {
-        console.log( data );
         console.log( data.message );
         localStorage.setItem( 'jwt', data.token );
         localStorage.setItem( 'user', JSON.stringify(data.users) );
@@ -53,6 +51,27 @@ export const userSignin = ({email, password}) => dispatch => {
           payload: data.users
         } )
         history.push('/user/notes')
+    }
+    } ).catch( err => {
+    console.log(err);
+  })
+}
+
+export const getUsers = () => dispatch => {
+  fetch( '/api/user', {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    },
+  } ).then( res => res.json() )
+    .then( data => {
+      if ( data.error ) {
+        console.log( data.error );
+      } else {
+        dispatch( {
+          type: GET_USER,
+          payload: data.savedUsers
+        } )
     }
     } ).catch( err => {
     console.log(err);
