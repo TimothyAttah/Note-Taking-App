@@ -46,6 +46,8 @@ export const userSignin = ({email, password}) => dispatch => {
       } else {
         console.log( data );
         console.log( data.message );
+        localStorage.setItem( 'jwt', data.token );
+        localStorage.setItem( 'user', JSON.stringify(data.users) );
         dispatch( {
           type: SIGN_IN,
           payload: data.users

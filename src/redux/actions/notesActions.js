@@ -7,7 +7,8 @@ export const createNote = ({title, content}) => dispatch => {
   fetch( '/api/notes/create', {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": "Bearer "+localStorage.getItem('jwt')
     },
     body: JSON.stringify({title, content})
   } ).then( res => res.json() )
