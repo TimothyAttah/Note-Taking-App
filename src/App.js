@@ -14,6 +14,7 @@ import NotesUpdate from './pages/notes/NotesUpdate';
 import NotesRead from './pages/notes/NotesRead';
 import Signup from './pages/user/Signup';
 import Signin from './pages/user/Signin';
+import Profile from './pages/profile/Profile';
 
 import { useDispatch } from 'react-redux';
 import { getUsers } from './redux/actions/authActions'
@@ -23,6 +24,7 @@ export const user = JSON.parse(localStorage.getItem( 'user' ));
 const MainContainer = styled.main`
  *{
    box-sizing: border-box;
+   margin: 0;
    a {
      text-decoration: none;
      color: #fff;
@@ -77,6 +79,7 @@ const App = () => {
           <Route path='/user/notes/edit/:id' component={ NotesUpdate } />
           <Route path='/user/notes/read/:id' component={ NotesRead } />
           <Route path='/user/notes/create' component={ NotesCreate } />
+          <Route path='/user/profile' exact component={Profile } />
           <Route path='/user/todos' exact component={ Todos } />
           <Route path='/user/todos/edit/:id' component={ Todos } />
           <Route path='/user/events' component={ Events } />
