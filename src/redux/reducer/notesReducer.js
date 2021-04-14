@@ -1,4 +1,4 @@
-import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES } from '../type';
+import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES, GET_NOTE } from '../type';
 
 const initialState = {
   notes: [
@@ -33,6 +33,7 @@ const notesReducer = (state = initialState, action) => {
         notes: [ action.payload, ...state.notes ]
       };
     case GET_NOTES:
+    case GET_NOTE:
       return {
         ...state,
         notes: action.payload

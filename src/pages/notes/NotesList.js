@@ -74,7 +74,6 @@ const NotesList = () => {
       {notes.length ? (
         notes.map( note => {
           const fullName = `${ note.postedBy.firstName } ${ note.postedBy.lastName }`
-          console.log( fullName );
           function nameToInitials(fullName) {
   const namesArray = fullName.trim().split(' ');
   if (namesArray.length === 1) return `${namesArray[0].charAt(0)}`;

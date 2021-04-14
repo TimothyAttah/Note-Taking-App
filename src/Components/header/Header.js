@@ -5,7 +5,6 @@ import { MenuBook} from '@material-ui/icons'
 import { Buttons } from '../Buttons';
 import ProfileModal from '../modal/ProfileModal';
 import { user } from '../../App';
-import history from '../../history';
 
 const NavContainer = styled.nav`
   display: flex;
