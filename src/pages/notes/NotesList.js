@@ -18,7 +18,6 @@ import Menus from '../../Components/Menus';
 
 const CardWrapper = styled.div`
   width: 500px;
-  /* border: 1px solid #ccc; */
   padding: 20px 10px;
   @media (max-width: 540px){
     width: 350px;
@@ -34,7 +33,30 @@ const CardWrapper = styled.div`
     }
     .MuiTypography-displayBlock {
       font-size: 11px;
+       border: 2px solid red;
     }
+    .MuiCardHeader-avatar {
+      display: flex;
+     
+    }
+  }
+`;
+
+const AvatarBox = styled.div`
+ /* display: flex;
+ flex-direction: column;
+ height: 200px;
+ position: absolute;
+ top: 0;
+ left: 0;
+ justify-content: space-between;
+      border: 2px solid red;
+      h4 > span {
+        padding-right: 6px;
+      } */
+
+  h4 > span {
+    padding-right: 6px;
   }
 `
 
@@ -45,34 +67,51 @@ const NotesList = () => {
   }, [ dispatch ] );
   
   const notes = useSelector( state => state.notesReducer.notes );
+   console.log(notes);
   return (
     <div>
       <h1>Note Lists</h1>
       {notes.length ? (
         notes.map( note => {
+          const fullName = `${ note.postedBy.firstName } ${ note.postedBy.lastName }`
+          console.log( fullName );
+          function nameToInitials(fullName) {
+  const namesArray = fullName.trim().split(' ');
+  if (namesArray.length === 1) return `${namesArray[0].charAt(0)}`;
+  else return `${namesArray[0].charAt(0)}${namesArray[namesArray.length - 1].charAt(0)}`;
+}
           return (
             <CardWrapper key={ note._id }>
-              <Card style={{border: '1px solid #ccc'}}>
+              <Card style={{border: '1px solid #ccc', position: 'relative'}}>
                 <CardHeader
                   avatar={
-                    <Avatar aria-label="notes">
-                      R
+                    <AvatarBox>
+                    <Avatar aria-label="notes" >
+                     {nameToInitials(fullName)}
                     </Avatar>
+                      <h4>
+                        <span>{ note.postedBy.firstName }</span>
+                        <span>{ note.postedBy.lastName }</span>
+                      </h4>
+                    </AvatarBox>
+                    
                   }
+                  
                   action={
                     <div>
                       <Menus note={ note } />
                     </div>
                   }
-                  title={ note.title }
+                  
+                   title={ note.title }
                   subheader="September 14, 2021"
                 />
-                <CardContent>
+                <CardContent style={{display: 'flex', justifyContent: 'center'}}>
                   <Typography variant="body2" color="textSecondary" component="p">
                     { note.content }
                   </Typography>
                 </CardContent>
-                <CardActions >
+                <CardActions style={{display: 'flex', justifyContent: 'center'}}>
                   <IconButton aria-label="add to favorites">
                     <Favorite color='secondary' />
                   </IconButton>
@@ -85,7 +124,7 @@ const NotesList = () => {
                     </Button>
                   </Link>
                 </CardActions>
-                <CardContent>
+                <CardContent style={{display: 'flex', justifyContent: 'center'}}>
                   <form>
                     <input placeholder='Add a comment' />
                   </form>

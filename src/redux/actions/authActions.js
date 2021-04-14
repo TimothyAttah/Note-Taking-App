@@ -1,4 +1,4 @@
-import { SIGN_UP, SIGN_IN, GET_USER } from '../type';
+import { SIGN_UP, SIGN_IN, GET_USER, SIGN_OUT } from '../type';
 import history from '../../history';
 
 export const userSignup = ({firstName, lastName, email, password}) => dispatch => {
@@ -50,7 +50,8 @@ export const userSignin = ({email, password}) => dispatch => {
           type: SIGN_IN,
           payload: data.users
         } )
-        history.push('/user/notes')
+        history.push( '/user/notes' )
+        window.location.reload( false );
     }
     } ).catch( err => {
     console.log(err);
@@ -76,4 +77,11 @@ export const getUsers = () => dispatch => {
     } ).catch( err => {
     console.log(err);
   })
+}
+
+export const logout = () => {
+  return {
+    type: SIGN_OUT,
+    payload: null
+  }
 }
