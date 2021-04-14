@@ -44,7 +44,7 @@ const NavContainer = styled.nav`
 const Header = () => {
   return (
     <NavContainer>
-      <h1><Link to='/'>Note3Sixty<MenuBook /></Link></h1>
+      <h1><Link to={user ? '/' : '/user/signin'}>Note3Sixty<MenuBook /></Link></h1>
       <div style={ { display: 'flex', alignItems: 'center' } }>
         { user ? (
           <ProfileModal />

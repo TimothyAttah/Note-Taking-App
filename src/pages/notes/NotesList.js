@@ -18,8 +18,8 @@ import Menus from '../../Components/Menus';
 
 const CardWrapper = styled.div`
   width: 500px;
-  border: 1px solid #ccc;
-  margin: 20px 10px;
+  /* border: 1px solid #ccc; */
+  padding: 20px 10px;
   @media (max-width: 540px){
     width: 350px;
   }
@@ -52,7 +52,7 @@ const NotesList = () => {
         notes.map( note => {
           return (
             <CardWrapper key={ note._id }>
-              <Card>
+              <Card style={{border: '1px solid #ccc'}}>
                 <CardHeader
                   avatar={
                     <Avatar aria-label="notes">
