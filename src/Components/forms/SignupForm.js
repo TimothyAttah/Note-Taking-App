@@ -55,7 +55,6 @@ const Signup = () => {
       password
     }
     dispatch( userSignup( newUser ) )
-    history.push( '/user/signin' );
   }
   return (
     <>
