@@ -1,4 +1,4 @@
-import { SIGN_UP, SIGN_IN, GET_USER } from '../type';
+import { SIGN_UP, SIGN_IN, GET_USER, SIGN_OUT } from '../type';
 
 const authReducer = ( users = [], action ) => {
   switch ( action.type ) {
@@ -6,6 +6,8 @@ const authReducer = ( users = [], action ) => {
     case SIGN_IN:
       return [ action.payload, ...users ]
     case GET_USER:
+      return action.payload
+    case SIGN_OUT:
       return action.payload
     default:
       return users

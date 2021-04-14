@@ -1,9 +1,13 @@
-import { Avatar, IconButton, Menu, MenuItem } from '@material-ui/core';
+import { Avatar, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import history from '../../history';
+import { useDispatch } from 'react-redux'
+import {logout} from '../../redux/actions/authActions'
 
 const ProfileModal = () => {
+  const dispatch = useDispatch()
   const [ auth, setAuth ] = useState( true );
   const [ anchorEl, setAnchorEl ] = useState( null );
   const open = Boolean( anchorEl );
@@ -15,6 +19,13 @@ const ProfileModal = () => {
   const handleClose = () => {
     setAnchorEl( null );
   };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch(logout())
+    history.push( '/user/signin' )
+    window.location.reload( false );
+  }
   return (
     <div>
       {auth && (
@@ -47,7 +58,7 @@ const ProfileModal = () => {
           >
             <MenuItem onClick={ handleClose }><Link to='/user/profile'>Profile</Link></MenuItem>
             <MenuItem onClick={ handleClose }>My account</MenuItem>
-            <MenuItem onClick={ handleClose }>Log Out</MenuItem>
+            <MenuItem onClick={ handleClose }><Button variant='contained' color='secondary' onClick={handleLogout}>Log Out</Button></MenuItem>
           </Menu>
         </div>
       ) }
