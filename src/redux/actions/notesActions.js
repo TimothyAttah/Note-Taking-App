@@ -101,6 +101,30 @@ export const unlikeNote = (id) => dispatch => {
   })
 }
 
+export const commentsNote = (text,noteId) => dispatch => {
+  fetch( '/api/notes/user/comments', {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer "+localStorage.getItem('jwt')
+    },
+    body: JSON.stringify({noteId, text})
+  } ).then( res => res.json() )
+    .then( data => {
+      if ( data.error ) {
+        console.log( data.error );
+      } else {
+        console.log( data.message );
+        dispatch( {
+          type: UNLIKE_NOTE,
+          payload: data.result
+        } )
+    }
+    } ).catch( err => {
+    console.log(err);
+  })
+}
+
 export const readNote = ( id ) => {
   return {
     type: READ_NOTE,

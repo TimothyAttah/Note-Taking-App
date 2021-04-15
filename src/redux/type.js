@@ -16,6 +16,7 @@ export const GET_NOTES = 'GET_NOTES';
 export const GET_NOTE = 'GET_NOTE';
 export const LIKE_NOTE = 'LIKE_NOTE';
 export const UNLIKE_NOTE = 'UNLIKE_NOTE';
+export const COMMENTS_NOTE = 'COMMENTS_NOTE';
 
 export const CREATE_TODO = 'CREATE_TODO';
 export const UPDATE_TODO =  'UPDATE_TODO';
