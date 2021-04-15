@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom';
 import {
@@ -73,9 +73,13 @@ const FormContainer = styled.form`
       color: #777;
     }
   }
+  button {
+    display: none;
+  }
 `;
 
 const NotesList = () => {
+  const [ comment, setComment ] = useState( '' );
   const dispatch = useDispatch();
   useEffect( () => {
     dispatch( getNotes() )
@@ -94,7 +98,12 @@ const NotesList = () => {
     }
   const handleUnLikeNote = ( id ) => {
       dispatch(unlikeNote(id))
-    }
+  }
+  
+  const handleSubmit = ( e ) => {
+    e.preventDefault();
+    console.log(comment);
+  }
   return (
     <div>
       <h1>Note Lists</h1>
@@ -156,8 +165,9 @@ const NotesList = () => {
                   <p>{ `${note.likes && note.likes.length} Likes`}</p>
                 </CardContent>
                 <CardContent style={{display: 'flex', justifyContent: 'center'}}>
-                  <FormContainer>
-                    <input placeholder='Add a comment' />
+                  <FormContainer onSubmit={handleSubmit}>
+                    <input placeholder='Add a comment' onChange={(e) => setComment(e.target.value)} />
+                    <button type='submit'>Comment</button>
                   </FormContainer>
                 </CardContent>
               </Card>
