@@ -127,6 +127,9 @@ const NotesList = () => {
                     </Button>
                   </Link>
                 </CardActions>
+                <CardContent>
+                  <p>{ `${note.likes.length} Likes`}</p>
+                </CardContent>
                 <CardContent style={{display: 'flex', justifyContent: 'center'}}>
                   <form>
                     <input placeholder='Add a comment' />
