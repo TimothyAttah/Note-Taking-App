@@ -66,22 +66,11 @@ export const likeNote = (id) => dispatch => {
       if ( data.error ) {
         console.log( data.error );
       } else {
-        console.log( data.result );
-
-        //  const newData = data.result.map( item => {
-        //  if ( item._id === data.result._id ) {
-        //     return data.result
-        //  } else {
-        //    return item
-        //   }
-        // })
         console.log( data.message );
         dispatch( {
           type: LIKE_NOTE,
           payload: data.result
         } )
-        // history.push( '/user/notes' )
-       
     }
     } ).catch( err => {
     console.log(err);
@@ -101,21 +90,11 @@ export const unlikeNote = (id) => dispatch => {
       if ( data.error ) {
         console.log( data.error );
       } else {
-        console.log( data );
-      //  const newData = data.map( item => {
-      //    if ( item._id === data.likes ) {
-      //       return data
-      //    } else {
-      //      return item
-      //     }
-      //   })
         console.log( data.message );
-        // dispatch( {
-        //   type: UNLIKE_NOTE,
-        //   payload: newData
-        // } )
-        // history.push( '/user/notes' )
-       
+        dispatch( {
+          type: UNLIKE_NOTE,
+          payload: data.result
+        } )
     }
     } ).catch( err => {
     console.log(err);
