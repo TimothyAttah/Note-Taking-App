@@ -28,7 +28,6 @@ const initialState = {
 const notesReducer = (state = initialState, action) => {
   switch ( action.type ) {
     case CREATE_NOTE:
-    case COMMENTS_NOTE:
       return {
         ...state,
         notes: [ action.payload, ...state.notes ]
@@ -51,6 +50,7 @@ const notesReducer = (state = initialState, action) => {
       }
     case LIKE_NOTE:
     case UNLIKE_NOTE:
+    case COMMENTS_NOTE:
       return {
         ...state,
         notes: state.notes.map(item => item._id === action.payload._id ? action.payload : item)

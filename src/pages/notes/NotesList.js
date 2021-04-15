@@ -11,7 +11,7 @@ import {
   IconButton,
   Button,
 } from '@material-ui/core';
-import {getNotes, likeNote, unlikeNote} from '../../redux/actions/notesActions'
+import {getNotes, likeNote, unlikeNote, commentsNote} from '../../redux/actions/notesActions'
 import { Favorite, ThumbDown, ThumbUp } from '@material-ui/icons';
 import styled from 'styled-components';
 import Menus from '../../Components/Menus';
@@ -100,10 +100,6 @@ const NotesList = () => {
       dispatch(unlikeNote(id))
   }
   
-  const handleSubmit = ( e ) => {
-    e.preventDefault();
-    console.log(comment);
-  }
   return (
     <div>
       <h1>Note Lists</h1>
@@ -164,8 +160,22 @@ const NotesList = () => {
                 <CardContent>
                   <p>{ `${note.likes && note.likes.length} Likes`}</p>
                 </CardContent>
-                <CardContent style={{display: 'flex', justifyContent: 'center'}}>
-                  <FormContainer onSubmit={handleSubmit}>
+                <CardContent style={ { display: 'flex', justifyContent: 'center', flexDirection:'column' } }>
+                  <div style={{paddingBottom: '20px'}}>
+                    { note.comments.map( noteComment => {
+                      return (
+                        <div key={noteComment._id}>
+                          <p>
+                            <span style={ { color: 'ThreeDDarkShadow', fontWeight: 'bold', paddingRight: '10px' } }>{ `${ noteComment.postedBy.firstName } ${ noteComment.postedBy.lastName }` }</span> { noteComment.text }</p>
+                        </div>
+                      )
+                    })}
+                  </div>
+                  <FormContainer onSubmit={ (e) => {
+                    e.preventDefault()
+                    dispatch( commentsNote( comment, note._id ) )
+                    setComment('')
+                  }}>
                     <input placeholder='Add a comment' onChange={(e) => setComment(e.target.value)} />
                     <button type='submit'>Comment</button>
                   </FormContainer>
@@ -178,5 +188,6 @@ const NotesList = () => {
     </div>
   );
 }
+
 
 export default NotesList;
