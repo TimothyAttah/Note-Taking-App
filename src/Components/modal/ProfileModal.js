@@ -1,10 +1,10 @@
-import { Avatar, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { AccountCircle } from '@material-ui/icons';
 import React, { useState } from 'react';
+import { Avatar, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import history from '../../history';
 import { useDispatch } from 'react-redux'
-import {logout} from '../../redux/actions/authActions'
+import { logout } from '../../redux/actions/authActions'
+import {user} from '../../App'
 
 const ProfileModal = () => {
   const dispatch = useDispatch()
@@ -26,11 +26,19 @@ const ProfileModal = () => {
     history.push( '/user/signin' )
     window.location.reload( false );
   }
+
+  const fullName = `${ user.firstName } ${ user.lastName }`
+            function nameToInitials(fullName) {
+  const namesArray = fullName.trim().split(' ');
+  if (namesArray.length === 1) return `${namesArray[0].charAt(0)}`;
+  else return `${namesArray[0].charAt(0)}${namesArray[namesArray.length - 1].charAt(0)}`;
+}
   return (
     <div>
       {auth && (
         <div>
-          <IconButton
+          {user && (
+             <IconButton
             aria-label="account of current user"
             aria-controls="menu-appbar"
             aria-haspopup="true"
@@ -38,9 +46,10 @@ const ProfileModal = () => {
             color="inherit"
             style={ { padding: '0' } }
           >
-            <h4 style={ { paddingRight: '15px', fontSize: '16px' } }>Patrick Stuart </h4>
-            <Avatar> <AccountCircle /></Avatar>
+            <h4 style={ { paddingRight: '15px', fontSize: '16px' } }>{fullName} </h4>
+              <Avatar> { nameToInitials( fullName ) }</Avatar>
           </IconButton>
+         )}
           <Menu
             id="menu-appbar"
             anchorEl={ anchorEl }

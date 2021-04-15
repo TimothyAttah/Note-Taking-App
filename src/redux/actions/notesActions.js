@@ -22,7 +22,8 @@ export const createNote = ({title, content}) => dispatch => {
           type: CREATE_NOTE,
           payload: data
         } )
-        history.push('/user/notes')
+        history.push( '/user/notes' )
+        window.location.reload( false );
     }
     } ).catch( err => {
     console.log(err);
@@ -41,7 +42,6 @@ export const getNote = () => dispatch => {
         console.log( data.error );
       } else {
         console.log( data );
-        console.log( data.message );
         dispatch( {
           type: GET_NOTE,
           payload: data
