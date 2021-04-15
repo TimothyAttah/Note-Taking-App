@@ -11,10 +11,11 @@ import {
   IconButton,
   Button,
 } from '@material-ui/core';
-import {getNotes} from '../../redux/actions/notesActions'
-import { Favorite, Share } from '@material-ui/icons';
+import {getNotes, likeNote, unlikeNote} from '../../redux/actions/notesActions'
+import { Favorite, ThumbDown, ThumbUp } from '@material-ui/icons';
 import styled from 'styled-components';
 import Menus from '../../Components/Menus';
+import { user } from '../../App';
 
 const CardWrapper = styled.div`
   width: 500px;
@@ -60,10 +61,24 @@ const AvatarBox = styled.div`
   }
 `
 
+const FormContainer = styled.form`
+  width: 300px;
+  input{
+    border: none;
+    border-bottom: 2px solid gray;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+    ::placeholder {
+      color: #777;
+    }
+  }
+`;
+
 const NotesList = () => {
   const dispatch = useDispatch();
   useEffect( () => {
-    dispatch(getNotes())
+    dispatch( getNotes() )
   }, [ dispatch ] );
   
   const notes = useSelector( state => state.notesReducer.notes );
@@ -74,7 +89,12 @@ const NotesList = () => {
   if (namesArray.length === 1) return `${namesArray[0].charAt(0)}`;
             else return `${ namesArray[ 0 ].charAt( 0 ) }${ namesArray[ namesArray.length - 1 ].charAt( 0 ) }`;
   }
-    
+  const handleLikeNote = ( id ) => {
+      dispatch(likeNote(id))
+    }
+  const handleUnLikeNote = ( id ) => {
+      dispatch(unlikeNote(id))
+    }
   return (
     <div>
       <h1>Note Lists</h1>
@@ -115,19 +135,30 @@ const NotesList = () => {
                   <IconButton aria-label="add to favorites">
                     <Favorite color='secondary' />
                   </IconButton>
-                  <IconButton aria-label="share">
-                    <Share />
+                  { note.likes.includes( user._id ) ? (
+                     <IconButton aria-label="unLikes" onClick={()=> handleUnLikeNote(note._id)}>
+                    <ThumbDown color='primary' />
                   </IconButton>
+                  ): (
+                    <IconButton aria-label="likes" onClick={()=> handleLikeNote(note._id)}>
+                    <ThumbUp color='primary' />
+                  </IconButton>
+                  )}
+                  
+                 
                   <Link to={`/user/notes/read/${note._id}`}>
                     <Button variant='contained' size='small' color='primary'>
                       Read More...
                     </Button>
                   </Link>
                 </CardActions>
+                <CardContent>
+                  <p>{ `${note.likes && note.likes.length} Likes`}</p>
+                </CardContent>
                 <CardContent style={{display: 'flex', justifyContent: 'center'}}>
-                  <form>
+                  <FormContainer>
                     <input placeholder='Add a comment' />
-                  </form>
+                  </FormContainer>
                 </CardContent>
               </Card>
             </CardWrapper>

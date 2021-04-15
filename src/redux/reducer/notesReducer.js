@@ -1,4 +1,4 @@
-import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES, GET_NOTE } from '../type';
+import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES, GET_NOTE, LIKE_NOTE, UNLIKE_NOTE } from '../type';
 
 const initialState = {
   notes: [
@@ -47,6 +47,12 @@ const notesReducer = (state = initialState, action) => {
       return {
         ...state,
         notes: state.notes.map( note => note.id === action.payload.id ? action.payload : state.notes )  
+      }
+    case LIKE_NOTE:
+    case UNLIKE_NOTE:
+      return {
+        ...state,
+        notes: state.notes.map(item => item._id === action.payload._id ? action.payload : item)
       }
     case DELETE_NOTE:
       return {
