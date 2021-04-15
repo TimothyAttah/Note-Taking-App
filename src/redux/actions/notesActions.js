@@ -1,4 +1,4 @@
-import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES, GET_NOTE, LIKE_NOTE, UNLIKE_NOTE } from '../type';
+import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES, GET_NOTE, LIKE_NOTE, UNLIKE_NOTE, COMMENTS_NOTE } from '../type';
 import * as api from '../api';
 import history from '../../history';
 
@@ -93,6 +93,30 @@ export const unlikeNote = (id) => dispatch => {
         console.log( data.message );
         dispatch( {
           type: UNLIKE_NOTE,
+          payload: data.result
+        } )
+    }
+    } ).catch( err => {
+    console.log(err);
+  })
+}
+
+export const commentsNote = (text,noteId) => dispatch => {
+  fetch( '/api/notes/user/comments', {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer "+localStorage.getItem('jwt')
+    },
+    body: JSON.stringify({noteId, text})
+  } ).then( res => res.json() )
+    .then( data => {
+      if ( data.error ) {
+        console.log( data.error );
+      } else {
+        console.log( data.result );
+        dispatch( {
+          type: COMMENTS_NOTE,
           payload: data.result
         } )
     }
