@@ -52,10 +52,10 @@ display: flex;
 `;
 
 const NotesDelete = () => {
-  const { id } = useParams()
+  const { noteId } = useParams()
   const dispatch = useDispatch()
-  console.log(id);
-  const notes = useSelector( state => id !== null ? state.notesReducer.notes.find( note => note.id === id ) : null )
+  console.log(noteId);
+  const notes = useSelector( state => noteId !== null ? state.notesReducer.notes.find( note => note._id === noteId ) : null )
   
   const handleDelete = (note) => {
     dispatch( deleteNote( note ) )
@@ -98,7 +98,7 @@ const NotesDelete = () => {
             size='small'
             style={ { backgroundColor: green[ 800 ], color: '#fff' } }
             startIcon={ <Check /> }
-            onClick={() => handleDelete(notes.id) }
+            onClick={() => handleDelete(notes._id) }
           >
             Yes
           </Button>
