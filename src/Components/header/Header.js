@@ -5,7 +5,6 @@ import { MenuBook} from '@material-ui/icons'
 import { Buttons } from '../Buttons';
 import ProfileModal from '../modal/ProfileModal';
 import { user } from '../../App';
-import history from '../../history';
 
 const NavContainer = styled.nav`
   display: flex;
@@ -45,7 +44,7 @@ const NavContainer = styled.nav`
 const Header = () => {
   return (
     <NavContainer>
-      <h1><Link to={user ? '/' : '/user/signin'}>Note3Sixty<MenuBook /></Link></h1>
+      <h1><Link to={user ? '/user/notes' : '/user/signin'}>Note3Sixty<MenuBook /></Link></h1>
       <div style={ { display: 'flex', alignItems: 'center' } }>
         { user ? (
           <div>

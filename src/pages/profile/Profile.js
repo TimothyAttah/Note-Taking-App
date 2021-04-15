@@ -1,6 +1,9 @@
-import React from 'react';
-import { Avatar } from '@material-ui/core';
-import styled, {css} from 'styled-components';
+import React, {useEffect} from 'react';
+import { Avatar, Divider } from '@material-ui/core';
+import styled, { css } from 'styled-components';
+import { user } from '../../App';
+import { useDispatch, useSelector } from 'react-redux';
+import {getNote} from '../../redux/actions/notesActions'
 
 const ProfileContainer = styled.div`
   display: flex;
@@ -35,29 +38,75 @@ const ProfileRight = styled.div`
   `}
 `;
 
+const ProfilePosts = styled.div`
+  border: 2px solid red;
+  width: 300px;
+  height: 200px;
+  padding: 20px;
+  h2 {
+    margin-bottom: 10px;
+  }
+`;
+
 const Profile = () => {
+  const dispatch = useDispatch()
+  useEffect( () => {
+    dispatch(getNote())
+  }, [ dispatch ] )
+ const notes = useSelector( state => state.notesReducer.notes.note );
+  console.log( notes );
+  console.log( user );
+ 
+  const fullName = `${ user.firstName } ${ user.lastName }`
+            function nameToInitials(fullName) {
+  const namesArray = fullName.trim().split(' ');
+  if (namesArray.length === 1) return `${namesArray[0].charAt(0)}`;
+  else return `${namesArray[0].charAt(0)}${namesArray[namesArray.length - 1].charAt(0)}`;
+}
   return (
     <>
-      <ProfileContainer>
-        <div>
-           <h1>User Profile </h1>
-        <Avatar>
-         <h4>P S</h4>
-        </Avatar>
-        </div>
-        <ProfileRight>
-          <h1>Patrick Stuart</h1>
-          <h4>patrick@gmail.com</h4>
-          <ProfileRight primary>
-            <h4><span>80</span> Posts</h4>
-            <h4><span>160</span> Followers</h4>
-            <h4><span>130</span> Following</h4>
+      { user ? (
+        <ProfileContainer>
+          <div>
+            <h1>User Profile </h1>
+            <Avatar>
+              <h4>{ nameToInitials( fullName ) }</h4>
+            </Avatar>
+          </div>
+          <ProfileRight>
+            <h1>{ fullName }</h1>
+            <h4>{ user.email }</h4>
+            { notes && (
+               <ProfileRight primary>
+              <h4><span>{ notes.length }</span> Posts</h4>
+              <h4><span>160</span> Followers</h4>
+              <h4><span>130</span> Following</h4>
+            </ProfileRight>
+          )}
           </ProfileRight>
-        </ProfileRight>
-      </ProfileContainer>
-
+        </ProfileContainer>
+      ) : (
+        <h2>User Loading</h2>
+      ) }
+      <Divider />
+      <div>
+        { notes ? (
+          notes.map( note => {
+            return (
+              <div style={{paddingBottom: '20px'}} key={ note._id }>
+              <ProfilePosts >
+                <h2>{ note.title }</h2>
+                <p>{ note.content }</p>
+                </ProfilePosts>
+                </div>
+            )
+          } )
+        ) : (
+          <div>Loading...</div>
+        ) }
+      </div>
     </>
-  )
+  );
 }
 
 export default Profile;

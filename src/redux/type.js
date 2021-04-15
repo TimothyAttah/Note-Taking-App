@@ -13,6 +13,7 @@ export const READ_NOTE = 'READ_NOTE';
 export const UPDATE_NOTE =  'UPDATE_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
 export const GET_NOTES = 'GET_NOTES';
+export const GET_NOTE = 'GET_NOTE';
 
 export const CREATE_TODO = 'CREATE_TODO';
 export const UPDATE_TODO =  'UPDATE_TODO';

@@ -67,19 +67,20 @@ const NotesList = () => {
   }, [ dispatch ] );
   
   const notes = useSelector( state => state.notesReducer.notes );
-   console.log(notes);
+  console.log( notes );
+ 
+          const nameToInitials =(fullName) => {
+  const namesArray = fullName.trim().split(' ');
+  if (namesArray.length === 1) return `${namesArray[0].charAt(0)}`;
+            else return `${ namesArray[ 0 ].charAt( 0 ) }${ namesArray[ namesArray.length - 1 ].charAt( 0 ) }`;
+  }
+    
   return (
     <div>
       <h1>Note Lists</h1>
-      {notes.length ? (
+      {notes.length ? ( 
         notes.map( note => {
-          const fullName = `${ note.postedBy.firstName } ${ note.postedBy.lastName }`
-          console.log( fullName );
-          function nameToInitials(fullName) {
-  const namesArray = fullName.trim().split(' ');
-  if (namesArray.length === 1) return `${namesArray[0].charAt(0)}`;
-  else return `${namesArray[0].charAt(0)}${namesArray[namesArray.length - 1].charAt(0)}`;
-}
+            const fullName = `${ note.postedBy && `${note.postedBy.firstName}` } ${ note.postedBy && `${note.postedBy.lastName}` }`
           return (
             <CardWrapper key={ note._id }>
               <Card style={{border: '1px solid #ccc', position: 'relative'}}>
@@ -90,8 +91,7 @@ const NotesList = () => {
                      {nameToInitials(fullName)}
                     </Avatar>
                       <h4>
-                        <span>{ note.postedBy.firstName }</span>
-                        <span>{ note.postedBy.lastName }</span>
+                        {fullName}
                       </h4>
                     </AvatarBox>
                     
@@ -131,7 +131,7 @@ const NotesList = () => {
                 </CardContent>
               </Card>
             </CardWrapper>
-          );
+          )
         } )
       ) : ( <h2>You have no notes yet</h2> ) }
     </div>
