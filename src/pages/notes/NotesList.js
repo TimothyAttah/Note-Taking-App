@@ -11,7 +11,7 @@ import {
   IconButton,
   Button,
 } from '@material-ui/core';
-import {getNotes} from '../../redux/actions/notesActions'
+import {getNotes, likeNote, unlikeNote} from '../../redux/actions/notesActions'
 import { Favorite, ThumbDown, ThumbUp } from '@material-ui/icons';
 import styled from 'styled-components';
 import Menus from '../../Components/Menus';
@@ -63,7 +63,7 @@ const AvatarBox = styled.div`
 const NotesList = () => {
   const dispatch = useDispatch();
   useEffect( () => {
-    dispatch(getNotes())
+    dispatch( getNotes() )
   }, [ dispatch ] );
   
   const notes = useSelector( state => state.notesReducer.notes );
@@ -74,7 +74,12 @@ const NotesList = () => {
   if (namesArray.length === 1) return `${namesArray[0].charAt(0)}`;
             else return `${ namesArray[ 0 ].charAt( 0 ) }${ namesArray[ namesArray.length - 1 ].charAt( 0 ) }`;
   }
-    
+  const handleLikeNote = ( id ) => {
+      dispatch(likeNote(id))
+    }
+  const handleUnLikeNote = ( id ) => {
+      dispatch(unlikeNote(id))
+    }
   return (
     <div>
       <h1>Note Lists</h1>
@@ -115,10 +120,10 @@ const NotesList = () => {
                   <IconButton aria-label="add to favorites">
                     <Favorite color='secondary' />
                   </IconButton>
-                  <IconButton aria-label="likes">
+                  <IconButton aria-label="likes" onClick={()=> handleLikeNote(note._id)}>
                     <ThumbUp color='primary' />
                   </IconButton>
-                  <IconButton aria-label="unLikes">
+                  <IconButton aria-label="unLikes" onClick={()=> handleUnLikeNote(note._id)}>
                     <ThumbDown color='primary' />
                   </IconButton>
                   <Link to={`/user/notes/read/${note._id}`}>
@@ -128,7 +133,7 @@ const NotesList = () => {
                   </Link>
                 </CardActions>
                 <CardContent>
-                  <p>{ `${note.likes.length} Likes`}</p>
+                  <p>{ `${note.likes && note.likes.length} Likes`}</p>
                 </CardContent>
                 <CardContent style={{display: 'flex', justifyContent: 'center'}}>
                   <form>

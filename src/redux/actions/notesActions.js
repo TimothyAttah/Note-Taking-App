@@ -1,4 +1,4 @@
-import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES, GET_NOTE, LIKE_NOTE } from '../type';
+import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES, GET_NOTE, LIKE_NOTE, UNLIKE_NOTE } from '../type';
 import * as api from '../api';
 import history from '../../history';
 
@@ -54,7 +54,42 @@ export const getNote = () => dispatch => {
 }
 
 export const likeNote = (id) => dispatch => {
-  fetch( '/api/notes/user/likes', {
+  fetch( '/api/notes/user/like', {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer "+localStorage.getItem('jwt')
+    },
+    body: JSON.stringify({noteId: id})
+  } ).then( res => res.json() )
+    .then( data => {
+      if ( data.error ) {
+        console.log( data.error );
+      } else {
+        console.log( data.result );
+
+        //  const newData = data.result.map( item => {
+        //  if ( item._id === data.result._id ) {
+        //     return data.result
+        //  } else {
+        //    return item
+        //   }
+        // })
+        console.log( data.message );
+        dispatch( {
+          type: LIKE_NOTE,
+          payload: data.result
+        } )
+        // history.push( '/user/notes' )
+       
+    }
+    } ).catch( err => {
+    console.log(err);
+  })
+}
+
+export const unlikeNote = (id) => dispatch => {
+  fetch( '/api/notes/user/unlike', {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -67,13 +102,20 @@ export const likeNote = (id) => dispatch => {
         console.log( data.error );
       } else {
         console.log( data );
+      //  const newData = data.map( item => {
+      //    if ( item._id === data.likes ) {
+      //       return data
+      //    } else {
+      //      return item
+      //     }
+      //   })
         console.log( data.message );
-        dispatch( {
-          type: LIKE_NOTE,
-          payload: data
-        } )
-        history.push( '/user/notes' )
-        window.location.reload( false );
+        // dispatch( {
+        //   type: UNLIKE_NOTE,
+        //   payload: newData
+        // } )
+        // history.push( '/user/notes' )
+       
     }
     } ).catch( err => {
     console.log(err);
