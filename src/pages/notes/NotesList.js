@@ -12,7 +12,7 @@ import {
   Button,
 } from '@material-ui/core';
 import {getNotes} from '../../redux/actions/notesActions'
-import { Favorite, Share } from '@material-ui/icons';
+import { Favorite, ThumbDown, ThumbUp } from '@material-ui/icons';
 import styled from 'styled-components';
 import Menus from '../../Components/Menus';
 
@@ -115,8 +115,11 @@ const NotesList = () => {
                   <IconButton aria-label="add to favorites">
                     <Favorite color='secondary' />
                   </IconButton>
-                  <IconButton aria-label="share">
-                    <Share />
+                  <IconButton aria-label="likes">
+                    <ThumbUp color='primary' />
+                  </IconButton>
+                  <IconButton aria-label="unLikes">
+                    <ThumbDown color='primary' />
                   </IconButton>
                   <Link to={`/user/notes/read/${note._id}`}>
                     <Button variant='contained' size='small' color='primary'>
