@@ -52,7 +52,7 @@ const Menus = ( { note } ) => {
           { ModalNav.map( (nav, index) => {
             return (
               <MenuBox key={index}>
-                <Link to={`${nav.path}/${note.id}`}>
+                <Link to={`${nav.path}/${note._id}`}>
                   <span>{ nav.icon }</span>
                   { nav.name }
                 </Link>

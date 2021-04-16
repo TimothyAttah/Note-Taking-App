@@ -124,7 +124,8 @@ const NotesList = () => {
                   
                   action={
                     <div>
-                      <Menus note={ note } />
+                      {note.postedBy._id === user._id && <Menus note={ note } />  }
+                      
                     </div>
                   }
                   

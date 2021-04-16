@@ -139,13 +139,29 @@ export const updateNote = ( id, notes ) => {
   }
 }
 
-export const deleteNote = ( id ) => {
-  return {
-    type: DELETE_NOTE,
-    payload: id
-  }
-}
+// export const deleteNote = ( id ) => {
+//   return {
+//     type: DELETE_NOTE,
+//     payload: id
+//   }
+// }
 
+
+export const deleteNote = ( noteId ) => dispatch => {
+  fetch( `/api/notes/delete/${ noteId }`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: "Bearer "+ localStorage.getItem('jwt')
+    }
+  } ).then( res => res.json() )
+    .then( data => {
+      console.log( data.deletedNote._id );
+      dispatch( {
+        type: DELETE_NOTE,
+        payload: data.deletedNote._id
+      })
+  })
+}
 
 export const getNotes = () => async dispatch => {
   try {
