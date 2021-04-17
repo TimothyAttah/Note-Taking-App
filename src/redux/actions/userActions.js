@@ -1,4 +1,4 @@
-import { GET_AUTH_USER } from '../type';
+import { FOLLOW_USER, GET_AUTH_USER } from '../type';
 
 
 export const getAuthUser = (id) => dispatch => {
@@ -23,3 +23,25 @@ export const getAuthUser = (id) => dispatch => {
     console.log(err);
   })
 }
+
+
+ export const followUser = (id) => dispatch => {
+    fetch( '/api/auth/user/follow', {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+ localStorage.getItem('jwt')
+      },
+      body: JSON.stringify({followId: id})
+    } ).then( res => res.json() )
+      .then( data => {
+        console.log(data.result.following);
+        dispatch( {
+          type: FOLLOW_USER,
+          payload: {following: data.result.following, followers: data.result.followers}
+       })
+      } )
+      .catch( err => {
+      console.log(err);
+    })
+  }
