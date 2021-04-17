@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import { Avatar, Divider } from '@material-ui/core';
+import { Avatar, Button, Divider } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 import { user } from '../../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNote } from '../../redux/actions/notesActions'
+// import { followUser } from '../../redux/actions/userActions'
 import {useParams} from 'react-router-dom'
 
 const ProfileContainer = styled.div`
@@ -37,6 +38,12 @@ const ProfileRight = styled.div`
       color: #000;
     }
   `}
+  ${props => props.button && css`
+     padding: 20px 0;
+     button {
+        margin-right: 15px;
+     }
+  `}
 `;
 
 const ProfilePosts = styled.div`
@@ -51,10 +58,12 @@ const ProfilePosts = styled.div`
 
 const UserProfile = () => {
   const dispatch = useDispatch()
-  const [userProfile, setUserProfile] = useState(null)
+  const [ userProfile, setUserProfile ] = useState( null )
+ 
   const { id } = useParams();
   useEffect( () => {
     dispatch( getNote() );
+    //  dispatch(followUser(id))
      fetch( `/api/auth/user/${id}`, {
     method: "GET",
     headers: {
@@ -71,10 +80,42 @@ const UserProfile = () => {
     } ).catch( err => {
     console.log(err);
   })
-  }, [ dispatch ] )
-//  const notes = useSelector( state => state.notesReducer.notes.note );
-  console.log( id );
+  }, [] )
+
+   const userFollowing = useSelector( state => state.userReducer.following );
+  const userFollowers = useSelector( state => state.userReducer.followers );
+  const myFollows = useSelector( state => state.userReducer.authUser );
+
+  const followUser = () => {
+    fetch( '/api/auth/user/follow', {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+ localStorage.getItem('jwt')
+      },
+      body: JSON.stringify({followId: id})
+    } ).then( res => res.json() )
+      .then( data => {
+       localStorage.setItem('users', JSON.stringify(data))
+        setUserProfile( ( prevState ) => {
+          return {
+            ...prevState,
+            user: {
+              ...prevState.user,
+              followers: [...prevState.user.followers, data._id]
+            }
+          }
+        })
+      } )
+      .catch( err => {
+      console.log(err);
+    })
+  }
+
   console.log( userProfile );
+  console.log( myFollows );
+  console.log(userFollowing);
+  console.log(userFollowers);
   
  
    const fullName = `${ userProfile &&  userProfile.user.firstName } ${ userProfile &&  userProfile.user.lastName }`
@@ -99,10 +140,14 @@ const UserProfile = () => {
             { userProfile.posts && (
                <ProfileRight primary>
               <h4><span>{ userProfile.posts.length }</span> Posts</h4>
-              <h4><span>160</span> Followers</h4>
-              <h4><span>130</span> Following</h4>
+                <h4><span>{userProfile.user && userProfile.user.followers.length}</span> Followers</h4>
+              <h4><span>{userProfile.user && userProfile.user.following.length }</span> Following</h4>
             </ProfileRight>
-          )}
+            ) }
+            <ProfileRight button>
+            <Button variant='contained' color='secondary' onClick={() => followUser()}>Follow</Button>
+              <Button variant='contained' color='secondary'>Unfollow</Button>
+              </ProfileRight>
           </ProfileRight>
         </ProfileContainer>
       ) : (
