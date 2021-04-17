@@ -66,7 +66,6 @@ const ProfileModal = () => {
             onClose={ handleClose }
           >
             <MenuItem onClick={ handleClose }><Link to='/user/profile'>Profile</Link></MenuItem>
-            <MenuItem onClick={ handleClose }><Link to={`/user/profile/${user._id}`}>User Profile</Link></MenuItem>
             <MenuItem onClick={ handleClose }>My account</MenuItem>
             <MenuItem onClick={ handleClose }><Button variant='contained' color='secondary' onClick={handleLogout}>Log Out</Button></MenuItem>
           </Menu>

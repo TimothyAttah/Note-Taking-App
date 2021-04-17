@@ -59,6 +59,7 @@ const ProfilePosts = styled.div`
 const UserProfile = () => {
   const dispatch = useDispatch()
   const [ userProfile, setUserProfile ] = useState( null )
+  const [showFollow, setShowFollow] = useState(true)
  
   const { id } = useParams();
   useEffect( () => {
@@ -105,7 +106,36 @@ const UserProfile = () => {
               followers: [...prevState.user.followers, data._id]
             }
           }
-        })
+        } )
+      setShowFollow(false)
+      } )
+      .catch( err => {
+      console.log(err);
+    })
+  }
+
+  const unFollowUser = () => {
+    fetch( '/api/auth/user/unfollow', {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+ localStorage.getItem('jwt')
+      },
+      body: JSON.stringify({unfollowId: id})
+    } ).then( res => res.json() )
+      .then( data => {
+       localStorage.setItem('users', JSON.stringify(data))
+        setUserProfile( ( prevState ) => {
+          const newFollower = prevState.user.followers.filter(item => item !== data._id)
+          return {
+            ...prevState,
+            user: {
+              ...prevState.user,
+              followers: newFollower
+            }
+          }
+        } )
+          
       } )
       .catch( err => {
       console.log(err);
@@ -145,8 +175,13 @@ const UserProfile = () => {
             </ProfileRight>
             ) }
             <ProfileRight button>
-            <Button variant='contained' color='secondary' onClick={() => followUser()}>Follow</Button>
-              <Button variant='contained' color='secondary'>Unfollow</Button>
+              { showFollow ? (
+                 <Button variant='contained' color='secondary' onClick={() => followUser()}>Follow</Button>
+              ) : (
+                   <Button variant='contained' color='secondary' onClick={()=> unFollowUser()}>Unfollow</Button>
+              )}
+           
+             
               </ProfileRight>
           </ProfileRight>
         </ProfileContainer>

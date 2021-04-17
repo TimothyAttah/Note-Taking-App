@@ -129,7 +129,7 @@ const NotesList = () => {
                   
                   action={
                     <div>
-                      { note ? (
+                      { note.postedBy ? (
                         <div>
                           { note && note.postedBy._id === user._id  &&  <Menus note={ note } /> }
                         </div>
@@ -174,9 +174,15 @@ const NotesList = () => {
                   <div style={{paddingBottom: '20px'}}>
                     { note.comments.map( noteComment => {
                       return (
-                        <div key={noteComment._id}>
-                          <p>
-                            <span style={ { color: 'ThreeDDarkShadow', fontWeight: 'bold', paddingRight: '10px' } }>{ `${ noteComment.postedBy.firstName } ${ noteComment.postedBy.lastName }` }</span> { noteComment.text }</p>
+                        <div key={ noteComment._id }>
+                         
+                               <p>
+                            <span style={ { color: 'ThreeDDarkShadow', fontWeight: 'bold', paddingRight: '10px' } }>
+                              { `${noteComment.postedBy && noteComment.postedBy.firstName } ${noteComment.postedBy && noteComment.postedBy.lastName }` }
+                            </span> { noteComment.text }
+                          </p>
+                        
+                         
                         </div>
                       )
                     })}
