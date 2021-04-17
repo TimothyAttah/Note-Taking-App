@@ -1,12 +1,19 @@
 import { GET_AUTH_USER } from '../type';
 
-const userReducer = ( authUser = [], action ) => {
+const initialState =  {
+  authUser: []
+}
+
+const userReducer = ( state = initialState, action ) => {
   switch (action.type) {
     case GET_AUTH_USER:
-    return action.payload
+      return {
+        ...state,
+        authUser: action.payload
+    }
      
     default:
-     return authUser;
+     return state
   }
 }
 

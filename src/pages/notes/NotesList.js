@@ -116,7 +116,12 @@ const NotesList = () => {
                      {nameToInitials(fullName)}
                     </Avatar>
                       <h4>
-                        {fullName}
+                        { notes  ? (
+                           <Link to={ note.postedBy && note.postedBy._id !==  user._id ? `/user/profile/${ note.postedBy._id }` : `/user/profile`} style={{color: 'aqua'}}>
+                           {fullName}
+                        </Link>
+                        ): <p>loading</p> }
+                       
                       </h4>
                     </AvatarBox>
                     
@@ -124,8 +129,12 @@ const NotesList = () => {
                   
                   action={
                     <div>
-                      {note.postedBy._id === user._id && <Menus note={ note } />  }
-                      
+                      { note ? (
+                        <div>
+                          { note && note.postedBy._id === user._id  &&  <Menus note={ note } /> }
+                        </div>
+                      ):( <p>loading</p>)  }
+                     
                     </div>
                   }
                   
