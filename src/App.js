@@ -18,6 +18,7 @@ import Profile from './pages/profile/Profile';
 
 import { useDispatch } from 'react-redux';
 import { getUsers } from './redux/actions/authActions'
+import UserProfile from './pages/profile/UserProfile';
 
 export const user = JSON.parse(localStorage.getItem( 'user' ));
 
@@ -60,6 +61,7 @@ const App = () => {
           <Route path='/user/notes/read/:id' component={ NotesRead } />
           <Route path='/user/notes/create' component={ NotesCreate } />
           <Route path='/user/profile' exact component={ Profile } />
+          <Route path='/user/profile/:id' component={ UserProfile } />
           <Route path='/user/todos' exact component={ Todos } />
           <Route path='/user/todos/edit/:id' component={ Todos } />
           <Route path='/user/events' component={ Events } />
