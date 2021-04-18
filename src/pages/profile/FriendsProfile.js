@@ -11,7 +11,7 @@ import {
   IconButton,
   Button,
 } from '@material-ui/core';
-import {getNotes, likeNote, unlikeNote, commentsNote} from '../../redux/actions/notesActions'
+import {getFriendsNotes, likeNote, unlikeNote, commentsNote} from '../../redux/actions/notesActions'
 import { Favorite, ThumbDown, ThumbUp } from '@material-ui/icons';
 import styled from 'styled-components';
 import Menus from '../../Components/Menus';
@@ -84,7 +84,7 @@ const FriendsProfile = () => {
   const [ double, setDouble ] = useState( false );
   const dispatch = useDispatch();
   useEffect( () => {
-    dispatch( getNotes() )
+    dispatch( getFriendsNotes() );
   }, [ dispatch ] );
   
   const notes = useSelector( state => state.notesReducer.notes );

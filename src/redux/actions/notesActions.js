@@ -1,4 +1,4 @@
-import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES, GET_NOTE, LIKE_NOTE, UNLIKE_NOTE, COMMENTS_NOTE } from '../type';
+import { CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE, GET_NOTES, GET_NOTE, LIKE_NOTE, UNLIKE_NOTE, COMMENTS_NOTE, FRIENDS_NOTE } from '../type';
 import * as api from '../api';
 import history from '../../history';
 
@@ -139,12 +139,6 @@ export const updateNote = ( id, notes ) => {
   }
 }
 
-// export const deleteNote = ( id ) => {
-//   return {
-//     type: DELETE_NOTE,
-//     payload: id
-//   }
-// }
 
 
 export const deleteNote = ( noteId ) => dispatch => {
@@ -173,4 +167,25 @@ export const getNotes = () => async dispatch => {
   } catch (error) {
     console.log(error);
   }
+}
+export const getFriendsNotes = () => async dispatch => {
+ fetch( '/api/notes/friends/note', {
+    method: "GET",
+    headers: {
+      "Authorization": "Bearer "+localStorage.getItem('jwt')
+    }
+  } ).then( res => res.json() )
+    .then( data => {
+      if ( data.error ) {
+        console.log( data.error );
+      } else {
+        console.log( data );
+        dispatch( {
+          type: FRIENDS_NOTE,
+          payload: data
+        } )
+    }
+    } ).catch( err => {
+    console.log(err);
+  })
 }
