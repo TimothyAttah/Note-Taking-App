@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import {IconButton } from '@material-ui/core';
-import {Edit, Delete, Save, Clear, Cancel} from '@material-ui/icons'
+import {Edit, Delete, Save, Cancel} from '@material-ui/icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { listTodos, deleteTodo } from '../../redux/actions/todosActions'
-import {Link, useParams} from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import './Todos.css';
 
 const UlWrapper = styled.ul`

@@ -18,7 +18,8 @@ const ProfileModal = () => {
 
   const handleClose = () => {
     setAnchorEl( null );
-    window.location.reload(false)
+    window.location.reload( false )
+    setAuth(false)
   };
 
   const handleLogout = () => {

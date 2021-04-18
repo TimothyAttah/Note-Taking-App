@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Avatar, Button, Divider } from '@material-ui/core';
 import styled, { css } from 'styled-components';
 import { user } from '../../App';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getNote } from '../../redux/actions/notesActions'
 // import { followUser } from '../../redux/actions/userActions'
 import {useParams} from 'react-router-dom'
@@ -23,7 +23,7 @@ const ProfileContainer = styled.div`
 
 const ProfileRight = styled.div`
   h1 {
-    padding-bottom: 2px;
+    padding-bottom: 3px;
     letter-spacing: 1px;
   }
   ${props => props.primary && css`
@@ -81,7 +81,7 @@ const UserProfile = () => {
     } ).catch( err => {
     console.log(err);
   })
-  }, [] )
+  }, [dispatch, id] )
 
 
   const followUser = () => {

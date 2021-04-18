@@ -33,7 +33,7 @@ const IncomeTransactionForm = ({ incomeId, setIncomeId }) => {
   useEffect( () => {
     if ( incomeId ) setContent( incomesBudgets.content );
     if ( incomeId ) setValues( incomesBudgets.values );
-  }, [incomesBudgets] );
+  }, [incomeId, incomesBudgets ] );
 
   const handleSubmit = ( e ) => {
     e.preventDefault();

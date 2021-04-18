@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Save } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux'
 import {updateNote} from '../../redux/actions/notesActions'
-import { v4 } from 'uuid';
 import history from '../../history';
 import { useParams } from 'react-router-dom';
 
