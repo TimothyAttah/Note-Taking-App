@@ -43,12 +43,13 @@ export const userSignin = ({email, password}) => dispatch => {
       if ( data.error ) {
         console.log( data.error );
       } else {
+        console.log(data);
         console.log( data.message );
         localStorage.setItem( 'jwt', data.token );
         localStorage.setItem( 'user', JSON.stringify(data.users) );
         dispatch( {
           type: SIGN_IN,
-          payload: data.users
+          payload: data
         } )
         history.push( '/user/notes' )
         window.location.reload( false );
@@ -69,6 +70,7 @@ export const getUsers = () => dispatch => {
       if ( data.error ) {
         console.log( data.error );
       } else {
+        console.log(data);
         dispatch( {
           type: GET_USER,
           payload: data.savedUsers

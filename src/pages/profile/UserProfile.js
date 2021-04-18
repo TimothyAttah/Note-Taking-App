@@ -97,7 +97,7 @@ const UserProfile = () => {
       body: JSON.stringify({followId: id})
     } ).then( res => res.json() )
       .then( data => {
-       localStorage.setItem('users', JSON.stringify(data))
+       localStorage.setItem('user', JSON.stringify(data))
         setUserProfile( ( prevState ) => {
           return {
             ...prevState,
@@ -124,7 +124,7 @@ const UserProfile = () => {
       body: JSON.stringify({unfollowId: id})
     } ).then( res => res.json() )
       .then( data => {
-       localStorage.setItem('users', JSON.stringify(data))
+       localStorage.setItem('user', JSON.stringify(data))
         setUserProfile( ( prevState ) => {
           const newFollower = prevState.user.followers.filter(item => item !== data._id)
           return {
@@ -135,7 +135,7 @@ const UserProfile = () => {
             }
           }
         } )
-          
+        setShowFollow( true );
       } )
       .catch( err => {
       console.log(err);
