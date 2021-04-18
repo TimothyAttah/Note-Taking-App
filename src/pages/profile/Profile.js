@@ -51,13 +51,16 @@ const ProfilePosts = styled.div`
 const Profile = () => {
   const dispatch = useDispatch()
   useEffect( () => {
-    dispatch(getNote())
+    dispatch( getNote() )
+    JSON.parse( localStorage.getItem( 'user' ) );
   }, [ dispatch ] )
- const notes = useSelector( state => state.notesReducer.notes.note );
+  const notes = useSelector( state => state.notesReducer.notes.note );
+ const users = JSON.parse( localStorage.getItem( 'users' ) );
   console.log( notes );
   console.log( user );
+  console.log( users );
  
-  const fullName = `${ user.firstName } ${ user.lastName }`
+  const fullName = `${user.result ? user.result.firstName : user.firstName } ${ user.result ? user.result.lastName : user.lastName }`
             function nameToInitials(fullName) {
   const namesArray = fullName.trim().split(' ');
   if (namesArray.length === 1) return `${namesArray[0].charAt(0)}`;
@@ -75,12 +78,12 @@ const Profile = () => {
           </div>
           <ProfileRight>
             <h1>{ fullName }</h1>
-            <h4>{ user.email }</h4>
+            <h4>{user.result ? user.result.email : user.email }</h4>
             { notes && (
                <ProfileRight primary>
               <h4><span>{ notes.length }</span> Posts</h4>
-              <h4><span>160</span> Followers</h4>
-              <h4><span>130</span> Following</h4>
+                <h4><span>{ user.result ? user.result.followers.length : user.followers.length }</span> Followers</h4>
+              <h4><span>{ user.result ? user.result.following.length : user.following.length }</span> Following</h4>
             </ProfileRight>
           )}
           </ProfileRight>

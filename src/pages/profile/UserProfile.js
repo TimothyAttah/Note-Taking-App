@@ -59,12 +59,12 @@ const ProfilePosts = styled.div`
 const UserProfile = () => {
   const dispatch = useDispatch()
   const [ userProfile, setUserProfile ] = useState( null )
-  const [showFollow, setShowFollow] = useState(true)
+  
  
   const { id } = useParams();
+  const [showFollow, setShowFollow] = useState( user.result ? !user.result.following.includes(id ): true)
   useEffect( () => {
     dispatch( getNote() );
-    //  dispatch(followUser(id))
      fetch( `/api/auth/user/${id}`, {
     method: "GET",
     headers: {
@@ -83,9 +83,6 @@ const UserProfile = () => {
   })
   }, [] )
 
-   const userFollowing = useSelector( state => state.userReducer.following );
-  const userFollowers = useSelector( state => state.userReducer.followers );
-  const myFollows = useSelector( state => state.userReducer.authUser );
 
   const followUser = () => {
     fetch( '/api/auth/user/follow', {
@@ -97,7 +94,7 @@ const UserProfile = () => {
       body: JSON.stringify({followId: id})
     } ).then( res => res.json() )
       .then( data => {
-       localStorage.setItem('users', JSON.stringify(data))
+       localStorage.setItem('user', JSON.stringify(data))
         setUserProfile( ( prevState ) => {
           return {
             ...prevState,
@@ -107,7 +104,8 @@ const UserProfile = () => {
             }
           }
         } )
-      setShowFollow(false)
+        setShowFollow( false )
+        window.location.reload(false)
       } )
       .catch( err => {
       console.log(err);
@@ -124,7 +122,7 @@ const UserProfile = () => {
       body: JSON.stringify({unfollowId: id})
     } ).then( res => res.json() )
       .then( data => {
-       localStorage.setItem('users', JSON.stringify(data))
+       localStorage.setItem('user', JSON.stringify(data))
         setUserProfile( ( prevState ) => {
           const newFollower = prevState.user.followers.filter(item => item !== data._id)
           return {
@@ -135,7 +133,8 @@ const UserProfile = () => {
             }
           }
         } )
-          
+        setShowFollow( true );
+        window.location.reload( false );
       } )
       .catch( err => {
       console.log(err);
@@ -143,9 +142,8 @@ const UserProfile = () => {
   }
 
   console.log( userProfile );
-  console.log( myFollows );
-  console.log(userFollowing);
-  console.log(userFollowers);
+  console.log( user );
+ 
   
  
    const fullName = `${ userProfile &&  userProfile.user.firstName } ${ userProfile &&  userProfile.user.lastName }`

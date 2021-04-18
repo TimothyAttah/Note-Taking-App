@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom';
 import {
@@ -11,11 +11,12 @@ import {
   IconButton,
   Button,
 } from '@material-ui/core';
-import {getNotes, likeNote, unlikeNote, commentsNote} from '../../redux/actions/notesActions'
+import {getFriendsNotes, likeNote, unlikeNote, commentsNote} from '../../redux/actions/notesActions'
 import { Favorite, ThumbDown, ThumbUp } from '@material-ui/icons';
 import styled from 'styled-components';
 import Menus from '../../Components/Menus';
 import { user } from '../../App';
+import Nav from '../../Components/nav/Nav';
 
 const CardWrapper = styled.div`
   width: 500px;
@@ -78,12 +79,12 @@ const FormContainer = styled.form`
   }
 `;
 
-const NotesList = () => {
+const FriendsProfile = () => {
   const [ comment, setComment ] = useState( '' );
   const [ double, setDouble ] = useState( false );
   const dispatch = useDispatch();
   useEffect( () => {
-    dispatch( getNotes() )
+    dispatch( getFriendsNotes() );
   }, [ dispatch ] );
   
   const notes = useSelector( state => state.notesReducer.notes );
@@ -104,7 +105,8 @@ const NotesList = () => {
   
   return (
     <div>
-      <h1>Note Lists</h1>
+      <Nav />
+      <h1>Friends Recent Posts</h1>
       {notes.length ? ( 
         notes.map( note => {
             const fullName = `${ note.postedBy && `${note.postedBy.firstName}` } ${ note.postedBy && `${note.postedBy.lastName}` }`
@@ -207,4 +209,4 @@ const NotesList = () => {
 }
 
 
-export default NotesList;
+export default FriendsProfile;

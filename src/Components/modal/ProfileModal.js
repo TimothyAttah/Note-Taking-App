@@ -18,6 +18,7 @@ const ProfileModal = () => {
 
   const handleClose = () => {
     setAnchorEl( null );
+    window.location.reload(false)
   };
 
   const handleLogout = () => {
@@ -27,7 +28,7 @@ const ProfileModal = () => {
     window.location.reload( false );
   }
 
-  const fullName = `${ user.firstName } ${ user.lastName }`
+  const fullName = `${ user.result ?  user.result.firstName: user.firstName } ${ user.result ? user.result.lastName : user.lastName }`
             function nameToInitials(fullName) {
   const namesArray = fullName.trim().split(' ');
   if (namesArray.length === 1) return `${namesArray[0].charAt(0)}`;
@@ -66,7 +67,7 @@ const ProfileModal = () => {
             onClose={ handleClose }
           >
             <MenuItem onClick={ handleClose }><Link to='/user/profile'>Profile</Link></MenuItem>
-            <MenuItem onClick={ handleClose }>My account</MenuItem>
+            <MenuItem onClick={ handleClose }><Link to='/user/friends/profile'>Friends Posts</Link></MenuItem>
             <MenuItem onClick={ handleClose }><Button variant='contained' color='secondary' onClick={handleLogout}>Log Out</Button></MenuItem>
           </Menu>
         </div>
