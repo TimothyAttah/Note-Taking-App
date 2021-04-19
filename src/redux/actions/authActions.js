@@ -23,7 +23,7 @@ export const userSignup = ({firstName, lastName, email, password}) => dispatch =
           type: SIGN_UP,
           payload: data.users
         } )
-        history.push('/user/signin')
+        history.push('/api/user/signin')
     }
     } ).catch( err => {
     console.log(err);
