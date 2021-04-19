@@ -54,9 +54,9 @@ const App = () => {
         <Header />
         <Switch>
           <Route path='/' exact component={ Home } />
-          <Route path='/user/signup' exact component={ Signup } />
-          <Route path='/user/signin' exact component={ Signin } />
-          <Route path='/user/notes' exact component={ Notes } />
+          <Route path='/api/user/signup' exact component={ Signup } />
+          <Route path='/api/user/signin' exact component={ Signin } />
+          <Route path='/api/user/notes' exact component={ Notes } />
           <Route path='/user/notes/delete/:noteId' component={ NotesDelete } />
           <Route path='/user/notes/edit/:id' component={ NotesUpdate } />
           <Route path='/user/notes/read/:id' component={ NotesRead } />
