@@ -44,7 +44,7 @@ const NavContainer = styled.nav`
 const Header = () => {
   return (
     <NavContainer>
-      <h1><Link to={user ? '/user/notes' : '/user/signin'}>Note3Sixty<MenuBook /></Link></h1>
+      <h1><Link to={user ? '/api/user/notes' : '/api/user/signin'}>Note3Sixty<MenuBook /></Link></h1>
       <div style={ { display: 'flex', alignItems: 'center' } }>
         { user ? (
           <div>
@@ -52,7 +52,7 @@ const Header = () => {
           </div>
         ) : (
             <div>
-              <Buttons signUp='SignUp' signIn='SignIn' signupPath='/user/signup' signinPath='/user/signin' />
+              <Buttons signUp='SignUp' signIn='SignIn' signupPath='/api/user/signup' signinPath='/api/user/signin' />
             </div>
         ) }
       </div>
