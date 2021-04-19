@@ -2,7 +2,7 @@ import { FOLLOW_USER, GET_AUTH_USER } from '../type';
 
 
 export const getAuthUser = (id) => dispatch => {
-   fetch( `/api/auth/user/${id}`, {
+   fetch( `https://notes-taking-app-front-end.herokuapp.com/api/auth/user/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export const getAuthUser = (id) => dispatch => {
 
 
  export const followUser = (id) => dispatch => {
-    fetch( '/api/auth/user/follow', {
+    fetch( 'https://notes-taking-app-front-end.herokuapp.com/api/auth/user/follow', {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json",

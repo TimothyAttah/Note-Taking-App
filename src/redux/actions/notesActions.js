@@ -4,7 +4,7 @@ import history from '../../history';
 
 
 export const createNote = ({title, content}) => dispatch => {
-  fetch( '/api/notes/create', {
+  fetch( 'https://notes-taking-app-front-end.herokuapp.com/api/notes/create', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const createNote = ({title, content}) => dispatch => {
 }
 
 export const getNote = () => dispatch => {
-  fetch( '/api/notes/user/note', {
+  fetch( 'https://notes-taking-app-front-end.herokuapp.com/api/notes/user/note', {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export const getNote = () => dispatch => {
 }
 
 export const likeNote = (id) => dispatch => {
-  fetch( '/api/notes/user/like', {
+  fetch( 'https://notes-taking-app-front-end.herokuapp.com/api/notes/user/like', {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -78,7 +78,7 @@ export const likeNote = (id) => dispatch => {
 }
 
 export const unlikeNote = (id) => dispatch => {
-  fetch( '/api/notes/user/unlike', {
+  fetch( 'https://notes-taking-app-front-end.herokuapp.com/api/notes/user/unlike', {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -102,7 +102,7 @@ export const unlikeNote = (id) => dispatch => {
 }
 
 export const commentsNote = (text,noteId) => dispatch => {
-  fetch( '/api/notes/user/comments', {
+  fetch( 'https://notes-taking-app-front-end.herokuapp.com/api/notes/user/comments', {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -142,7 +142,7 @@ export const updateNote = ( id, notes ) => {
 
 
 export const deleteNote = ( noteId ) => dispatch => {
-  fetch( `/api/notes/delete/${ noteId }`, {
+  fetch( `https://notes-taking-app-front-end.herokuapp.com/api/notes/delete/${ noteId }`, {
     method: 'DELETE',
     headers: {
       Authorization: "Bearer "+ localStorage.getItem('jwt')
@@ -169,7 +169,7 @@ export const getNotes = () => async dispatch => {
   }
 }
 export const getFriendsNotes = () => async dispatch => {
- fetch( '/api/notes/friends/note', {
+ fetch( 'https://notes-taking-app-front-end.herokuapp.com/api/notes/friends/note', {
     method: "GET",
     headers: {
       "Authorization": "Bearer "+localStorage.getItem('jwt')

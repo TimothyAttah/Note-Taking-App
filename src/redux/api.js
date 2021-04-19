@@ -2,9 +2,10 @@ import axios from 'axios';
 
 const incomeUrl = 'http://localhost:8080/api/budgets/incomes';
 const expenseUrl = 'http://localhost:8080/api/budgets/expenses';
-const authUrl = 'http://localhost:5000/api/user';
+const authUrl = 'https://notes-taking-app-front-end.herokuapp.com/api/user';
 
-const notesUrl = 'http://localhost:5000/api/notes';
+const notesUrl = 'https://notes-taking-app-front-end.herokuapp.com/api/notes';
+// const notesUrl = 'http://localhost:5000/api/notes';
 
 export const getIncome = () => axios.get( `${ incomeUrl }` );
 
