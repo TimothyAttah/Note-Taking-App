@@ -2,7 +2,7 @@ import { SIGN_UP, SIGN_IN, GET_USER, SIGN_OUT } from '../type';
 import history from '../../history';
 
 export const userSignup = ({firstName, lastName, email, password}) => dispatch => {
-  fetch( 'https://elastic-bardeen-7cf415.netlify.app/api/user/signup', {
+  fetch( '/https://elastic-bardeen-7cf415.netlify.app/api/user/signup', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
