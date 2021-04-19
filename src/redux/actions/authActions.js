@@ -2,7 +2,7 @@ import { SIGN_UP, SIGN_IN, GET_USER, SIGN_OUT } from '../type';
 import history from '../../history';
 
 export const userSignup = ({firstName, lastName, email, password}) => dispatch => {
-  fetch( 'https://notes-taking-app-front-end.herokuapp.com/api/user/signup', {
+  fetch( 'https://elastic-bardeen-7cf415.netlify.app/api/user/signup', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -32,7 +32,7 @@ export const userSignup = ({firstName, lastName, email, password}) => dispatch =
 
 
 export const userSignin = ({email, password}) => dispatch => {
-  fetch( 'https://notes-taking-app-front-end.herokuapp.com/api/user/signin', {
+  fetch( 'https://elastic-bardeen-7cf415.netlify.app/api/user/signin', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -60,7 +60,7 @@ export const userSignin = ({email, password}) => dispatch => {
 }
 
 export const getUsers = () => dispatch => {
-  fetch( 'https://notes-taking-app-front-end.herokuapp.com/api/user', {
+  fetch( 'https://elastic-bardeen-7cf415.netlify.app/api/user', {
     method: "GET",
     headers: {
       "Content-Type": "application/json"

@@ -4,7 +4,7 @@ const incomeUrl = 'http://localhost:8080/api/budgets/incomes';
 const expenseUrl = 'http://localhost:8080/api/budgets/expenses';
 const authUrl = 'https://notes-taking-app-front-end.herokuapp.com/api/user';
 
-const notesUrl = 'https://notes-taking-app-front-end.herokuapp.com/api/notes';
+const notesUrl = 'https://elastic-bardeen-7cf415.netlify.app/api/notes';
 // const notesUrl = 'http://localhost:5000/api/notes';
 
 export const getIncome = () => axios.get( `${ incomeUrl }` );
