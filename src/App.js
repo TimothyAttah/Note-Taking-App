@@ -45,7 +45,7 @@ const App = () => {
     if ( user ) {
       dispatch( getUsers() );
     } else {
-      history.push('/user/signin')
+      history.push('/api/user/signin')
     }
   }, [dispatch] );
   return (
